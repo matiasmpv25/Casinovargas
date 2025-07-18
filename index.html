@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casino Online Legal | Juego Responsable</title>
+    <title>Casino Online | Juegos Gratuitos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,6 +20,7 @@
             --dark: #1a1a2e;
             --light: #f8f9fa;
             --warning: #f8b400;
+            --success: #4CAF50;
         }
         
         body {
@@ -172,55 +173,19 @@
             font-size: 1.1rem;
         }
         
-        .features-grid {
+        .games-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(68, 161, 160, 0.5);
-        }
-        
-        .feature-icon {
-            font-size: 3.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-        }
-        
-        .games {
-            padding: 5rem 5%;
-            background: linear-gradient(to bottom, var(--dark) 0%, #0f0f1f 100%);
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            padding: 0 5%;
         }
         
         .game-card {
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
             overflow: hidden;
-            position: relative;
-            height: 300px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease;
         }
         
@@ -228,55 +193,171 @@
             transform: translateY(-10px);
         }
         
-        .game-image {
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .game-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
+        .game-header {
             padding: 1.5rem;
-            transform: translateY(40px);
-            transition: transform 0.3s ease;
+            background: rgba(13, 92, 99, 0.7);
+            text-align: center;
         }
         
-        .game-card:hover .game-overlay {
-            transform: translateY(0);
-        }
-        
-        .game-title {
-            font-size: 1.4rem;
+        .game-header h3 {
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
         }
         
-        .game-info {
+        .game-content {
+            padding: 2rem;
+            min-height: 300px;
             display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #ccc;
+            flex-direction: column;
+            align-items: center;
         }
         
-        .btn-play-sm {
+        /* Estilos para la máquina tragaperras */
+        .slot-machine {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .slot {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--dark);
+            font-weight: bold;
+        }
+        
+        /* Estilos para el blackjack */
+        .blackjack-container {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            min-height: 120px;
+        }
+        
+        .card {
+            width: 80px;
+            height: 120px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .card.red {
+            color: #d32f2f;
+        }
+        
+        .card-value {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 1rem;
+        }
+        
+        .card-suit {
+            font-size: 2rem;
+        }
+        
+        /* Estilos para la ruleta */
+        .roulette-container {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .roulette-wheel {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: var(--success);
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid #d32f2f;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        
+        .roulette-pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        .roulette-number {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark);
+            transform-origin: center;
+        }
+        
+        .game-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .game-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
             background: var(--accent);
             color: var(--dark);
-            padding: 0.5rem 1.2rem;
-            font-weight: 600;
-            border-radius: 30px;
-            display: inline-block;
-            margin-top: 1rem;
-            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .game-btn:hover {
+            background: var(--warning);
+            transform: scale(1.05);
+        }
+        
+        .game-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
         }
         
         .responsible-gaming {
             padding: 5rem 5%;
             background: var(--primary);
             text-align: center;
+            margin-top: 4rem;
         }
         
         .responsible-content {
@@ -420,6 +501,10 @@
                 width: 100%;
                 margin: 0;
             }
+            
+            .games-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -433,7 +518,7 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#">Juegos</a></li>
+                <li><a href="#games">Juegos Gratis</a></li>
                 <li><a href="#">Promociones</a></li>
                 <li><a href="#">Soporte</a></li>
                 <li><a href="#">Responsabilidad</a></li>
@@ -447,85 +532,113 @@
 
     <!-- Sección Hero -->
     <section class="hero">
-        <h2>Diversión y Emoción en un Entorno Seguro</h2>
-        <p>Disfruta de los mejores juegos de casino con licencia oficial y políticas de juego responsable</p>
+        <h2>Juegos de Casino Gratuitos</h2>
+        <p>Disfruta de nuestros juegos de demostración sin necesidad de registrarte ni apostar dinero real</p>
         <div class="hero-buttons">
             <button class="btn btn-play"><i class="fas fa-play"></i> Jugar Ahora</button>
-            <button class="btn btn-learn">Aprende Más</button>
+            <button class="btn btn-learn">Cómo Funciona</button>
         </div>
     </section>
 
-    <!-- Características -->
+    <!-- Sección de juegos -->
     <section class="features">
         <div class="section-title">
-            <h2>Por Qué Elegirnos</h2>
-            <p>Ofrecemos una experiencia de juego segura, legal y entretenida con las mejores prácticas de la industria</p>
+            <h2 id="games">Juegos Gratuitos</h2>
+            <p>Prueba nuestras versiones de demostración completamente funcionales</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Totalmente Legal</h3>
-                <p>Operamos con licencia oficial y cumplimos con todas las regulaciones para garantizar la seguridad de nuestros jugadores.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <h3>Protección de Datos</h3>
-                <p>Tus datos personales y financieros están protegidos con tecnología de encriptación de última generación.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h3>Juegos Certificados</h3>
-                <p>Todos nuestros juegos son auditados regularmente para garantizar la equidad y resultados aleatorios.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Juegos populares -->
-    <section class="games">
-        <div class="section-title">
-            <h2>Juegos Populares</h2>
-            <p>Descubre nuestra amplia selección de juegos de casino con los mejores proveedores del mundo</p>
-        </div>
-        <div class="games-grid">
+        
+        <div class="games-container">
+            <!-- Tragaperras -->
             <div class="game-card">
-                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1582657118090-af35e07544f9?ixlib=rb-4.0.3');">
-                    <div class="game-overlay">
-                        <h3 class="game-title">Tragaperras Clásicas</h3>
-                        <div class="game-info">
-                            <span>96.5% RTP</span>
-                            <span>Alta Volatilidad</span>
-                        </div>
-                        <a href="#" class="btn-play-sm">Jugar Ahora</a>
+                <div class="game-header">
+                    <h3>Tragaperras Clásicas</h3>
+                    <p>Gira los rodillos y gana premios virtuales</p>
+                </div>
+                <div class="game-content">
+                    <div class="slot-machine">
+                        <div class="slot" id="slot1">🍒</div>
+                        <div class="slot" id="slot2">🍋</div>
+                        <div class="slot" id="slot3">🍊</div>
+                    </div>
+                    
+                    <div class="game-info">
+                        <p>Créditos: <span id="credits">100</span></p>
+                        <p>Premio: <span id="prize">0</span></p>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button class="game-btn" id="spin-btn">
+                            <i class="fas fa-redo"></i> Girar
+                        </button>
+                        <button class="game-btn" id="reset-btn">
+                            <i class="fas fa-sync"></i> Reiniciar
+                        </button>
                     </div>
                 </div>
             </div>
+            
+            <!-- Blackjack -->
             <div class="game-card">
-                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1600857062241-98c0a9e0e34f?ixlib=rb-4.0.3');">
-                    <div class="game-overlay">
-                        <h3 class="game-title">Blackjack</h3>
-                        <div class="game-info">
-                            <span>99.2% RTP</span>
-                            <span>Habilidad</span>
+                <div class="game-header">
+                    <h3>Blackjack</h3>
+                    <p>Intenta conseguir 21 sin pasarte</p>
+                </div>
+                <div class="game-content">
+                    <div class="blackjack-container">
+                        <h4>Jugador</h4>
+                        <div class="cards-container" id="player-cards"></div>
+                        <p>Puntos: <span id="player-score">0</span></p>
+                        
+                        <div class="game-controls">
+                            <button class="game-btn" id="hit-btn">
+                                <i class="fas fa-plus"></i> Pedir Carta
+                            </button>
+                            <button class="game-btn" id="stand-btn">
+                                <i class="fas fa-hand-paper"></i> Plantarse
+                            </button>
                         </div>
-                        <a href="#" class="btn-play-sm">Jugar Ahora</a>
+                        
+                        <div class="game-info">
+                            <p id="blackjack-result">¡Comienza un nuevo juego!</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Ruleta -->
             <div class="game-card">
-                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1543365067-f488401f7b15?ixlib=rb-4.0.3');">
-                    <div class="game-overlay">
-                        <h3 class="game-title">Ruleta</h3>
-                        <div class="game-info">
-                            <span>97.3% RTP</span>
-                            <span>Variantes Europeas</span>
+                <div class="game-header">
+                    <h3>Ruleta Europea</h3>
+                    <p>Adivina dónde caerá la bola</p>
+                </div>
+                <div class="game-content">
+                    <div class="roulette-container">
+                        <div class="roulette-wheel" id="roulette-wheel">
+                            <div class="roulette-pointer"></div>
+                            <div class="roulette-number" style="transform: rotate(0deg) translate(100px) rotate(0deg);">0</div>
+                            <div class="roulette-number" style="transform: rotate(30deg) translate(100px) rotate(-30deg);">32</div>
+                            <div class="roulette-number" style="transform: rotate(60deg) translate(100px) rotate(-60deg);">15</div>
+                            <div class="roulette-number" style="transform: rotate(90deg) translate(100px) rotate(-90deg);">19</div>
+                            <div class="roulette-number" style="transform: rotate(120deg) translate(100px) rotate(-120deg);">4</div>
+                            <div class="roulette-number" style="transform: rotate(150deg) translate(100px) rotate(-150deg);">21</div>
+                            <div class="roulette-number" style="transform: rotate(180deg) translate(100px) rotate(-180deg);">2</div>
+                            <div class="roulette-number" style="transform: rotate(210deg) translate(100px) rotate(-210deg);">25</div>
+                            <div class="roulette-number" style="transform: rotate(240deg) translate(100px) rotate(-240deg);">17</div>
+                            <div class="roulette-number" style="transform: rotate(270deg) translate(100px) rotate(-270deg);">34</div>
+                            <div class="roulette-number" style="transform: rotate(300deg) translate(100px) rotate(-300deg);">6</div>
+                            <div class="roulette-number" style="transform: rotate(330deg) translate(100px) rotate(-330deg);">27</div>
                         </div>
-                        <a href="#" class="btn-play-sm">Jugar Ahora</a>
+                        
+                        <div class="game-controls">
+                            <button class="game-btn" id="bet-red">Rojo</button>
+                            <button class="game-btn" id="bet-black">Negro</button>
+                            <button class="game-btn" id="bet-green">Cero</button>
+                        </div>
+                        
+                        <div class="game-info">
+                            <p>Saldo: <span id="balance">100</span> créditos</p>
+                            <p id="roulette-result">Haz tu apuesta</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -536,23 +649,23 @@
     <section class="responsible-gaming">
         <div class="responsible-content">
             <h2>Juego Responsable</h2>
-            <p>En CasinoLegit promovemos el juego como una forma de entretenimiento. Creemos en ofrecer un ambiente seguro donde nuestros jugadores puedan disfrutar de manera responsable. Ofrecemos herramientas para ayudarte a controlar tu juego y prevenir problemas.</p>
+            <p>Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Si deseas jugar con dinero real, asegúrate de hacerlo en casinos regulados y con licencia.</p>
             
             <div class="tips">
                 <div class="tip">
-                    <i class="fas fa-clock"></i>
-                    <h4>Límites de Tiempo</h4>
-                    <p>Establece límites de tiempo para tus sesiones de juego</p>
-                </div>
-                <div class="tip">
-                    <i class="fas fa-coins"></i>
-                    <h4>Límites de Depósito</h4>
-                    <p>Controla tus gastos con límites diarios, semanales o mensuales</p>
+                    <i class="fas fa-info-circle"></i>
+                    <h4>Solo Entretenimiento</h4>
+                    <p>Estos juegos son demostraciones sin valor monetario</p>
                 </div>
                 <div class="tip">
                     <i class="fas fa-ban"></i>
-                    <h4>Autoexclusión</h4>
-                    <p>Opción de autoexclusión temporal o permanente si lo necesitas</p>
+                    <h4>Prohibido Menores</h4>
+                    <p>El contenido está dirigido solo a mayores de 18 años</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>Sin Apuestas Reales</h4>
+                    <p>No se aceptan ni procesan apuestas con dinero real</p>
                 </div>
             </div>
         </div>
@@ -563,16 +676,16 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>CasinoLegit</h3>
-                <p>Operado por Entretenimiento Digital SL, con licencia otorgada por la Dirección General de Ordenación del Juego bajo el número RGL 12345.</p>
+                <p>Juegos de demostración para entretenimiento. No se realizan transacciones reales.</p>
                 <div class="legal-logos">
                     <div class="legal-logo">
-                        <i class="fas fa-certificate"></i>
+                        <i class="fas fa-info-circle"></i>
                     </div>
                     <div class="legal-logo">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-child"></i>
                     </div>
                     <div class="legal-logo">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-exclamation-triangle"></i>
                     </div>
                 </div>
             </div>
@@ -580,35 +693,23 @@
                 <h3>Enlaces Rápidos</h3>
                 <ul class="footer-links">
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Juegos</a></li>
-                    <li><a href="#">Promociones</a></li>
-                    <li><a href="#">Torneos</a></li>
-                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#games">Juegos Gratis</a></li>
+                    <li><a href="#">Cómo Jugar</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Información Legal</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Términos y Condiciones</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Política de Cookies</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Privacidad</a></li>
                     <li><a href="#">Juego Responsable</a></li>
-                    <li><a href="#">Reglamento de Juegos</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Soporte</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Chat en Vivo</a></li>
-                    <li><a href="#">Guías de Juego</a></li>
-                    <li><a href="#">Reclamaciones</a></li>
+                    <li><a href="#">Exención de Responsabilidad</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            <p>© 2023 CasinoLegit. Todos los derechos reservados. El juego puede ser adictivo. Juega con responsabilidad. Prohibida la participación de menores de 18 años.</p>
+            <p>© 2023 CasinoLegit. Todos los derechos reservados. Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Prohibida la participación de menores de 18 años.</p>
         </div>
     </footer>
 
@@ -616,5 +717,223 @@
     <div class="age-restriction">
         <i class="fas fa-exclamation-triangle"></i> +18
     </div>
+
+    <script>
+        // Juego de Tragaperras
+        const symbols = ['🍒', '🍋', '🍊', '⭐', '🔔', '7️⃣'];
+        let credits = 100;
+        let prize = 0;
+        
+        document.getElementById('spin-btn').addEventListener('click', () => {
+            if (credits <= 0) {
+                alert("No tienes créditos suficientes. Reinicia el juego.");
+                return;
+            }
+            
+            credits -= 5;
+            prize = 0;
+            
+            // Girar los rodillos
+            for (let i = 1; i <= 3; i++) {
+                const randomIndex = Math.floor(Math.random() * symbols.length);
+                document.getElementById(`slot${i}`).textContent = symbols[randomIndex];
+            }
+            
+            // Comprobar resultados
+            const slot1 = document.getElementById('slot1').textContent;
+            const slot2 = document.getElementById('slot2').textContent;
+            const slot3 = document.getElementById('slot3').textContent;
+            
+            if (slot1 === '7️⃣' && slot2 === '7️⃣' && slot3 === '7️⃣') {
+                prize = 100;
+            } else if (slot1 === slot2 && slot2 === slot3) {
+                prize = 50;
+            } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
+                prize = 10;
+            }
+            
+            credits += prize;
+            
+            // Actualizar UI
+            document.getElementById('credits').textContent = credits;
+            document.getElementById('prize').textContent = prize;
+        });
+        
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            credits = 100;
+            prize = 0;
+            document.getElementById('credits').textContent = credits;
+            document.getElementById('prize').textContent = prize;
+            
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`slot${i}`).textContent = symbols[0];
+            }
+        });
+        
+        // Juego de Blackjack
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        let playerCards = [];
+        let playerScore = 0;
+        
+        function createDeck() {
+            const deck = [];
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ suit, value });
+                }
+            }
+            return deck;
+        }
+        
+        function shuffleDeck(deck) {
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            return deck;
+        }
+        
+        function calculateScore(cards) {
+            let score = 0;
+            let aces = 0;
+            
+            for (let card of cards) {
+                if (card.value === 'A') {
+                    aces++;
+                    score += 11;
+                } else if (['K', 'Q', 'J'].includes(card.value)) {
+                    score += 10;
+                } else {
+                    score += parseInt(card.value);
+                }
+            }
+            
+            // Ajustar aces si el score es mayor a 21
+            while (score > 21 && aces > 0) {
+                score -= 10;
+                aces--;
+            }
+            
+            return score;
+        }
+        
+        function renderCards(cards, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            for (let card of cards) {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.innerHTML = `
+                    <div class="card-value">${card.value}</div>
+                    <div class="card-suit">${card.suit}</div>
+                `;
+                
+                if (['♥', '♦'].includes(card.suit)) {
+                    cardElement.classList.add('red');
+                }
+                
+                container.appendChild(cardElement);
+            }
+        }
+        
+        function startBlackjack() {
+            const deck = shuffleDeck(createDeck());
+            playerCards = [deck.pop(), deck.pop()];
+            playerScore = calculateScore(playerCards);
+            
+            renderCards(playerCards, 'player-cards');
+            document.getElementById('player-score').textContent = playerScore;
+            document.getElementById('blackjack-result').textContent = "¿Quieres otra carta o te plantas?";
+            
+            // Habilitar botones
+            document.getElementById('hit-btn').disabled = false;
+            document.getElementById('stand-btn').disabled = false;
+        }
+        
+        document.getElementById('hit-btn').addEventListener('click', () => {
+            const deck = shuffleDeck(createDeck());
+            playerCards.push(deck.pop());
+            playerScore = calculateScore(playerCards);
+            
+            renderCards(playerCards, 'player-cards');
+            document.getElementById('player-score').textContent = playerScore;
+            
+            if (playerScore > 21) {
+                document.getElementById('blackjack-result').textContent = "¡Te has pasado de 21! Has perdido.";
+                document.getElementById('hit-btn').disabled = true;
+                document.getElementById('stand-btn').disabled = true;
+            } else if (playerScore === 21) {
+                document.getElementById('blackjack-result').textContent = "¡Blackjack! ¡Has ganado!";
+                document.getElementById('hit-btn').disabled = true;
+                document.getElementById('stand-btn').disabled = true;
+            }
+        });
+        
+        document.getElementById('stand-btn').addEventListener('click', () => {
+            // Simular crupier
+            let dealerScore = Math.floor(Math.random() * 10) + 16;
+            
+            if (dealerScore > 21 || dealerScore < playerScore) {
+                document.getElementById('blackjack-result').textContent = `¡Ganas! Crupier: ${dealerScore}, Jugador: ${playerScore}`;
+            } else if (dealerScore > playerScore) {
+                document.getElementById('blackjack-result').textContent = `¡Pierdes! Crupier: ${dealerScore}, Jugador: ${playerScore}`;
+            } else {
+                document.getElementById('blackjack-result').textContent = `¡Empate! Crupier: ${dealerScore}, Jugador: ${playerScore}`;
+            }
+            
+            document.getElementById('hit-btn').disabled = true;
+            document.getElementById('stand-btn').disabled = true;
+        });
+        
+        // Iniciar un juego al cargar
+        window.addEventListener('load', () => {
+            startBlackjack();
+        });
+        
+        // Ruleta
+        let balance = 100;
+        
+        document.getElementById('bet-red').addEventListener('click', () => playRoulette('red'));
+        document.getElementById('bet-black').addEventListener('click', () => playRoulette('black'));
+        document.getElementById('bet-green').addEventListener('click', () => playRoulette('green'));
+        
+        function playRoulette(bet) {
+            if (balance <= 0) {
+                alert("No tienes suficiente saldo. Recarga la página para reiniciar.");
+                return;
+            }
+            
+            balance -= 10;
+            
+            // Girar la ruleta
+            const wheel = document.getElementById('roulette-wheel');
+            const spins = 5 + Math.floor(Math.random() * 5);
+            const degrees = 1080 + Math.floor(Math.random() * 360);
+            
+            wheel.style.transition = 'transform 4s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            wheel.style.transform = `rotate(${degrees}deg)`;
+            
+            // Resultado después de 4 segundos
+            setTimeout(() => {
+                const winningNumber = Math.floor(Math.random() * 37);
+                const winningColor = winningNumber === 0 ? 'green' : (winningNumber % 2 === 0 ? 'black' : 'red');
+                
+                let resultText = `Número: ${winningNumber} - ${winningColor}`;
+                
+                if (winningColor === bet) {
+                    const winAmount = bet === 'green' ? 150 : 20;
+                    balance += winAmount;
+                    resultText += ` - ¡Ganas ${winAmount} créditos!`;
+                } else {
+                    resultText += " - Pierdes esta ronda";
+                }
+                
+                document.getElementById('roulette-result').textContent = resultText;
+                document.getElementById('balance').textContent = balance;
+            }, 4000);
+        }
+    </script>
 </body>
 </html>
