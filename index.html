@@ -3,507 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casino Online | Juegos Gratuitos</title>
+    <title>Bitcoin Casino Demo | Juegos Gratuitos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        /* Estilos existentes... */
         
-        :root {
-            --primary: #0d5c63;
-            --secondary: #44a1a0;
-            --accent: #ff6b6b;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --warning: #f8b400;
-            --success: #4CAF50;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        header {
-            background: rgba(13, 92, 99, 0.95);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .logo i {
-            font-size: 2.2rem;
-            color: var(--accent);
-        }
-        
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-        
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        nav a:hover, nav a.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--accent);
-        }
-        
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-        
-        .btn-login {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .btn-register {
-            background: var(--accent);
-            color: var(--dark);
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero {
-            padding: 6rem 5% 4rem;
-            text-align: center;
-            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.9)), url('https://images.unsplash.com/photo-1519817914152-22d216bb9170?ixlib=rb-4.0.3') no-repeat center center/cover;
-        }
-        
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            color: #e0e0e0;
-        }
-        
-        .btn-play {
-            background: var(--warning);
-            color: var(--dark);
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            margin: 0 1rem;
-        }
-        
-        .btn-learn {
-            background: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .features {
-            padding: 5rem 5%;
-            background: var(--dark);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: #b0b0b0;
-            font-size: 1.1rem;
-        }
-        
-        .games-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            padding: 0 5%;
-        }
-        
-        .game-card {
-            background: rgba(255, 255, 255, 0.05);
+        /* Nuevos estilos para Bitcoin */
+        .bitcoin-theme {
+            background: linear-gradient(135deg, #0d5c63 0%, #1a1a2e 100%);
+            border: 2px solid #f2a900;
             border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
         }
         
-        .game-card:hover {
-            transform: translateY(-10px);
+        .bitcoin-theme::before {
+            content: "₿";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 5rem;
+            opacity: 0.1;
+            color: #f2a900;
+            transform: rotate(25deg);
         }
         
-        .game-header {
-            padding: 1.5rem;
-            background: rgba(13, 92, 99, 0.7);
-            text-align: center;
+        .bitcoin-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         
-        .game-header h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+        .bitcoin-logo {
+            color: #f2a900;
+            font-size: 2.5rem;
         }
         
-        .game-content {
-            padding: 2rem;
-            min-height: 300px;
+        .bitcoin-wallet {
+            background: rgba(242, 169, 0, 0.1);
+            border: 1px solid rgba(242, 169, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
-        
-        /* Estilos para la máquina tragaperras */
-        .slot-machine {
-            display: flex;
             gap: 10px;
-            margin: 20px 0;
         }
         
-        .slot {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border: 3px solid var(--accent);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--dark);
-            font-weight: bold;
-        }
-        
-        /* Estilos para el blackjack */
-        .blackjack-container {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .cards-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            min-height: 120px;
-        }
-        
-        .card {
-            width: 80px;
-            height: 120px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--dark);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        
-        .card.red {
-            color: #d32f2f;
-        }
-        
-        .card-value {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            font-size: 1rem;
-        }
-        
-        .card-suit {
-            font-size: 2rem;
-        }
-        
-        /* Estilos para la ruleta */
-        .roulette-container {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .roulette-wheel {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: var(--success);
-            margin: 20px auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 5px solid #d32f2f;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
-        
-        .roulette-pointer {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background: var(--accent);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-        
-        .roulette-number {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--dark);
-            transform-origin: center;
-        }
-        
-        .game-controls {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .game-btn {
-            padding: 10px 25px;
-            border-radius: 30px;
-            background: var(--accent);
-            color: var(--dark);
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .game-btn:hover {
-            background: var(--warning);
-            transform: scale(1.05);
-        }
-        
-        .game-info {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .responsible-gaming {
-            padding: 5rem 5%;
-            background: var(--primary);
-            text-align: center;
-            margin-top: 4rem;
-        }
-        
-        .responsible-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .responsible-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--warning);
-        }
-        
-        .responsible-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .tips {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .tip {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            width: 220px;
-        }
-        
-        .tip i {
-            font-size: 2.5rem;
-            color: var(--warning);
-            margin-bottom: 1rem;
-        }
-        
-        footer {
-            background: #0a0a1a;
-            padding: 4rem 5% 2rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: #b0b0b0;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .legal-logos {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .legal-logo {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #888;
+        .wallet-address {
+            font-family: monospace;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            border-radius: 5px;
             font-size: 0.9rem;
         }
         
-        .age-restriction {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--warning);
-            color: var(--dark);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            z-index: 100;
+        .wallet-balance {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         
+        .bitcoin-provably {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        .verification-code {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        
+        .verification-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 8px;
+            color: white;
+            font-family: monospace;
+        }
+        
+        .bitcoin-btn {
+            background: linear-gradient(to right, #f2a900, #f2a900);
+            color: #1a1a2e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .bitcoin-btn:hover {
+            background: linear-gradient(to right, #ffc107, #ff9800);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(242, 169, 0, 0.3);
+        }
+        
+        .affiliate-section {
+            background: rgba(13, 92, 99, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .affiliate-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .affiliate-logo {
+            width: 120px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .affiliate-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .demo-note {
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
+            .bitcoin-theme {
+                padding: 15px;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+            .bitcoin-logo {
+                font-size: 2rem;
             }
             
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .btn-play, .btn-learn {
-                width: 100%;
-                margin: 0;
-            }
-            
-            .games-container {
-                grid-template-columns: 1fr;
+            .wallet-balance {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -512,14 +177,14 @@
     <!-- Header con navegación -->
     <header>
         <div class="logo">
-            <i class="fas fa-dice"></i>
-            <h1>Casino<span>Legit</span></h1>
+            <i class="fab fa-bitcoin bitcoin-logo"></i> <!-- Cambiamos a logo Bitcoin -->
+            <h1>Bitcoin<span>Casino</span>Demo</h1> <!-- Cambiamos el nombre -->
         </div>
         <nav>
             <ul>
                 <li><a href="#" class="active">Inicio</a></li>
                 <li><a href="#games">Juegos Gratis</a></li>
-                <li><a href="#">Promociones</a></li>
+                <li><a href="#bitcoin">Bitcoin</a></li> <!-- Nueva sección -->
                 <li><a href="#">Soporte</a></li>
                 <li><a href="#">Responsabilidad</a></li>
             </ul>
@@ -532,33 +197,95 @@
 
     <!-- Sección Hero -->
     <section class="hero">
-        <h2>Juegos de Casino Gratuitos</h2>
-        <p>Disfruta de nuestros juegos de demostración sin necesidad de registrarte ni apostar dinero real</p>
+        <h2>Casino Bitcoin Demo Gratuito</h2>
+        <p>Experimenta la tecnología blockchain con nuestros juegos de demostración sin necesidad de registrarte ni apostar dinero real</p>
         <div class="hero-buttons">
             <button class="btn btn-play"><i class="fas fa-play"></i> Jugar Ahora</button>
             <button class="btn btn-learn">Cómo Funciona</button>
         </div>
     </section>
 
+    <!-- Nueva sección Bitcoin -->
+    <section class="features" id="bitcoin">
+        <div class="section-title">
+            <h2>Tecnología Bitcoin en Casinos</h2>
+            <p>Descubre cómo funciona la tecnología blockchain en los juegos de casino</p>
+        </div>
+        
+        <div class="bitcoin-theme">
+            <div class="bitcoin-header">
+                <i class="fab fa-bitcoin bitcoin-logo"></i>
+                <h3>Monedero Bitcoin Demo</h3>
+            </div>
+            
+            <div class="bitcoin-wallet">
+                <div class="wallet-address" id="wallet-address">
+                    bc1q9z4f8j4f8j4f8j4f8j4f8j4f8j4f8j4f8j4f8j
+                </div>
+                <div class="wallet-balance">
+                    <i class="fab fa-bitcoin"></i>
+                    <span id="btc-balance">0.00250000</span>
+                </div>
+                <p>Este monedero virtual es solo para demostración. No contiene Bitcoin real.</p>
+            </div>
+            
+            <div class="bitcoin-provably">
+                <h4>Tecnología Provably Fair</h4>
+                <p>En casinos Bitcoin reales, puedes verificar la justicia de cada juego usando criptografía:</p>
+                
+                <div class="verification-code">
+                    <label>Semilla del servidor (Hash):</label>
+                    <input type="text" class="verification-input" value="a3f8b1c9d2e7f6a5c4b3d8e9f0a1b2c3" readonly>
+                </div>
+                
+                <div class="verification-code">
+                    <label>Tu semilla:</label>
+                    <input type="text" class="verification-input" value="4d5e6f7a8b9c0d1e" readonly>
+                </div>
+                
+                <div class="verification-code">
+                    <label>Resultado calculado:</label>
+                    <input type="text" class="verification-input" value="32 (negro)" readonly>
+                </div>
+                
+                <button class="bitcoin-btn">
+                    <i class="fas fa-check-circle"></i> Verificar Juego
+                </button>
+                
+                <p class="demo-note">
+                    <i class="fas fa-exclamation-triangle"></i> Esta es solo una demostración de la tecnología. 
+                    En un casino Bitcoin real, podrías verificar cada resultado usando tu cliente.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Sección de juegos -->
     <section class="features">
         <div class="section-title">
-            <h2 id="games">Juegos Gratuitos</h2>
+            <h2 id="games">Juegos Gratuitos con Tema Bitcoin</h2>
             <p>Prueba nuestras versiones de demostración completamente funcionales</p>
         </div>
         
+        <div class="demo-note">
+            <i class="fas fa-info-circle"></i> 
+            <strong>ATENCIÓN:</strong> Estos juegos son solo para demostración y entretenimiento. 
+            No aceptan Bitcoin real ni ninguna otra moneda real. 
+            Los créditos mostrados son virtuales y no tienen valor monetario.
+        </div>
+        
         <div class="games-container">
-            <!-- Tragaperras -->
+            <!-- Tragaperras con tema Bitcoin -->
             <div class="game-card">
                 <div class="game-header">
-                    <h3>Tragaperras Clásicas</h3>
+                    <h3>Tragaperras Bitcoin</h3>
                     <p>Gira los rodillos y gana premios virtuales</p>
                 </div>
                 <div class="game-content">
                     <div class="slot-machine">
-                        <div class="slot" id="slot1">🍒</div>
-                        <div class="slot" id="slot2">🍋</div>
-                        <div class="slot" id="slot3">🍊</div>
+                        <div class="slot" id="slot1">₿</div>
+                        <div class="slot" id="slot2">★</div>
+                        <div class="slot" id="slot3">$</div>
                     </div>
                     
                     <div class="game-info">
@@ -577,45 +304,17 @@
                 </div>
             </div>
             
-            <!-- Blackjack -->
+            <!-- Ruleta con tema Bitcoin -->
             <div class="game-card">
                 <div class="game-header">
-                    <h3>Blackjack</h3>
-                    <p>Intenta conseguir 21 sin pasarte</p>
-                </div>
-                <div class="game-content">
-                    <div class="blackjack-container">
-                        <h4>Jugador</h4>
-                        <div class="cards-container" id="player-cards"></div>
-                        <p>Puntos: <span id="player-score">0</span></p>
-                        
-                        <div class="game-controls">
-                            <button class="game-btn" id="hit-btn">
-                                <i class="fas fa-plus"></i> Pedir Carta
-                            </button>
-                            <button class="game-btn" id="stand-btn">
-                                <i class="fas fa-hand-paper"></i> Plantarse
-                            </button>
-                        </div>
-                        
-                        <div class="game-info">
-                            <p id="blackjack-result">¡Comienza un nuevo juego!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Ruleta -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3>Ruleta Europea</h3>
+                    <h3>Ruleta Bitcoin</h3>
                     <p>Adivina dónde caerá la bola</p>
                 </div>
                 <div class="game-content">
                     <div class="roulette-container">
                         <div class="roulette-wheel" id="roulette-wheel">
                             <div class="roulette-pointer"></div>
-                            <div class="roulette-number" style="transform: rotate(0deg) translate(100px) rotate(0deg);">0</div>
+                            <div class="roulette-number" style="transform: rotate(0deg) translate(100px) rotate(0deg);">₿</div>
                             <div class="roulette-number" style="transform: rotate(30deg) translate(100px) rotate(-30deg);">32</div>
                             <div class="roulette-number" style="transform: rotate(60deg) translate(100px) rotate(-60deg);">15</div>
                             <div class="roulette-number" style="transform: rotate(90deg) translate(100px) rotate(-90deg);">19</div>
@@ -632,7 +331,7 @@
                         <div class="game-controls">
                             <button class="game-btn" id="bet-red">Rojo</button>
                             <button class="game-btn" id="bet-black">Negro</button>
-                            <button class="game-btn" id="bet-green">Cero</button>
+                            <button class="game-btn" id="bet-green">Bitcoin</button>
                         </div>
                         
                         <div class="game-info">
@@ -645,27 +344,52 @@
         </div>
     </section>
 
+    <!-- Sección de afiliados -->
+    <section class="affiliate-section">
+        <div class="section-title">
+            <h2>Casinos Bitcoin Reales</h2>
+            <p>Si quieres jugar con Bitcoin real, estos son casinos regulados que aceptan criptomonedas</p>
+        </div>
+        
+        <div class="affiliate-logos">
+            <div class="affiliate-logo">Stake.com</div>
+            <div class="affiliate-logo">BitStarz</div>
+            <div class="affiliate-logo">CloudBet</div>
+            <div class="affiliate-logo">mBit Casino</div>
+        </div>
+        
+        <button class="bitcoin-btn">
+            <i class="fas fa-external-link-alt"></i> Ver casinos reales
+        </button>
+        
+        <div class="demo-note">
+            <i class="fas fa-exclamation-circle"></i> 
+            Estos casinos requieren apuestas reales y solo están disponibles para mayores de 18 años. 
+            Juega responsablemente.
+        </div>
+    </section>
+
     <!-- Juego Responsable -->
     <section class="responsible-gaming">
         <div class="responsible-content">
             <h2>Juego Responsable</h2>
-            <p>Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Si deseas jugar con dinero real, asegúrate de hacerlo en casinos regulados y con licencia.</p>
+            <p>Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Los casinos Bitcoin reales requieren licencias y están sujetos a regulaciones específicas en cada jurisdicción.</p>
             
             <div class="tips">
                 <div class="tip">
                     <i class="fas fa-info-circle"></i>
-                    <h4>Solo Entretenimiento</h4>
+                    <h4>Demo Sin Valor Real</h4>
                     <p>Estos juegos son demostraciones sin valor monetario</p>
                 </div>
                 <div class="tip">
-                    <i class="fas fa-ban"></i>
-                    <h4>Prohibido Menores</h4>
-                    <p>El contenido está dirigido solo a mayores de 18 años</p>
+                    <i class="fab fa-bitcoin"></i>
+                    <h4>Tecnología Blockchain</h4>
+                    <p>Los casinos Bitcoin reales usan tecnología "provably fair"</p>
                 </div>
                 <div class="tip">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <h4>Sin Apuestas Reales</h4>
-                    <p>No se aceptan ni procesan apuestas con dinero real</p>
+                    <h4>Requiere Licencia</h4>
+                    <p>Operar un casino real requiere licencia y cumplimiento legal</p>
                 </div>
             </div>
         </div>
@@ -675,11 +399,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>CasinoLegit</h3>
-                <p>Juegos de demostración para entretenimiento. No se realizan transacciones reales.</p>
+                <h3>Bitcoin Casino Demo</h3>
+                <p>Plataforma de demostración tecnológica. No se realizan transacciones reales.</p>
                 <div class="legal-logos">
                     <div class="legal-logo">
-                        <i class="fas fa-info-circle"></i>
+                        <i class="fab fa-bitcoin"></i>
                     </div>
                     <div class="legal-logo">
                         <i class="fas fa-child"></i>
@@ -694,7 +418,7 @@
                 <ul class="footer-links">
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#games">Juegos Gratis</a></li>
-                    <li><a href="#">Cómo Jugar</a></li>
+                    <li><a href="#bitcoin">Tecnología Bitcoin</a></li>
                     <li><a href="#">Preguntas Frecuentes</a></li>
                 </ul>
             </div>
@@ -709,7 +433,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>© 2023 CasinoLegit. Todos los derechos reservados. Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Prohibida la participación de menores de 18 años.</p>
+            <p>© 2023 Bitcoin Casino Demo. Todos los derechos reservados. Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Prohibida la participación de menores de 18 años.</p>
         </div>
     </footer>
 
@@ -720,7 +444,7 @@
 
     <script>
         // Juego de Tragaperras
-        const symbols = ['🍒', '🍋', '🍊', '⭐', '🔔', '7️⃣'];
+        const symbols = ['₿', '★', '$', '7', '♦', '♥'];
         let credits = 100;
         let prize = 0;
         
@@ -744,7 +468,7 @@
             const slot2 = document.getElementById('slot2').textContent;
             const slot3 = document.getElementById('slot3').textContent;
             
-            if (slot1 === '7️⃣' && slot2 === '7️⃣' && slot3 === '7️⃣') {
+            if (slot1 === '₿' && slot2 === '₿' && slot3 === '₿') {
                 prize = 100;
             } else if (slot1 === slot2 && slot2 === slot3) {
                 prize = 50;
@@ -768,128 +492,6 @@
             for (let i = 1; i <= 3; i++) {
                 document.getElementById(`slot${i}`).textContent = symbols[0];
             }
-        });
-        
-        // Juego de Blackjack
-        const suits = ['♠', '♥', '♦', '♣'];
-        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-        let playerCards = [];
-        let playerScore = 0;
-        
-        function createDeck() {
-            const deck = [];
-            for (let suit of suits) {
-                for (let value of values) {
-                    deck.push({ suit, value });
-                }
-            }
-            return deck;
-        }
-        
-        function shuffleDeck(deck) {
-            for (let i = deck.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [deck[i], deck[j]] = [deck[j], deck[i]];
-            }
-            return deck;
-        }
-        
-        function calculateScore(cards) {
-            let score = 0;
-            let aces = 0;
-            
-            for (let card of cards) {
-                if (card.value === 'A') {
-                    aces++;
-                    score += 11;
-                } else if (['K', 'Q', 'J'].includes(card.value)) {
-                    score += 10;
-                } else {
-                    score += parseInt(card.value);
-                }
-            }
-            
-            // Ajustar aces si el score es mayor a 21
-            while (score > 21 && aces > 0) {
-                score -= 10;
-                aces--;
-            }
-            
-            return score;
-        }
-        
-        function renderCards(cards, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            
-            for (let card of cards) {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'card';
-                cardElement.innerHTML = `
-                    <div class="card-value">${card.value}</div>
-                    <div class="card-suit">${card.suit}</div>
-                `;
-                
-                if (['♥', '♦'].includes(card.suit)) {
-                    cardElement.classList.add('red');
-                }
-                
-                container.appendChild(cardElement);
-            }
-        }
-        
-        function startBlackjack() {
-            const deck = shuffleDeck(createDeck());
-            playerCards = [deck.pop(), deck.pop()];
-            playerScore = calculateScore(playerCards);
-            
-            renderCards(playerCards, 'player-cards');
-            document.getElementById('player-score').textContent = playerScore;
-            document.getElementById('blackjack-result').textContent = "¿Quieres otra carta o te plantas?";
-            
-            // Habilitar botones
-            document.getElementById('hit-btn').disabled = false;
-            document.getElementById('stand-btn').disabled = false;
-        }
-        
-        document.getElementById('hit-btn').addEventListener('click', () => {
-            const deck = shuffleDeck(createDeck());
-            playerCards.push(deck.pop());
-            playerScore = calculateScore(playerCards);
-            
-            renderCards(playerCards, 'player-cards');
-            document.getElementById('player-score').textContent = playerScore;
-            
-            if (playerScore > 21) {
-                document.getElementById('blackjack-result').textContent = "¡Te has pasado de 21! Has perdido.";
-                document.getElementById('hit-btn').disabled = true;
-                document.getElementById('stand-btn').disabled = true;
-            } else if (playerScore === 21) {
-                document.getElementById('blackjack-result').textContent = "¡Blackjack! ¡Has ganado!";
-                document.getElementById('hit-btn').disabled = true;
-                document.getElementById('stand-btn').disabled = true;
-            }
-        });
-        
-        document.getElementById('stand-btn').addEventListener('click', () => {
-            // Simular crupier
-            let dealerScore = Math.floor(Math.random() * 10) + 16;
-            
-            if (dealerScore > 21 || dealerScore < playerScore) {
-                document.getElementById('blackjack-result').textContent = `¡Ganas! Crupier: ${dealerScore}, Jugador: ${playerScore}`;
-            } else if (dealerScore > playerScore) {
-                document.getElementById('blackjack-result').textContent = `¡Pierdes! Crupier: ${dealerScore}, Jugador: ${playerScore}`;
-            } else {
-                document.getElementById('blackjack-result').textContent = `¡Empate! Crupier: ${dealerScore}, Jugador: ${playerScore}`;
-            }
-            
-            document.getElementById('hit-btn').disabled = true;
-            document.getElementById('stand-btn').disabled = true;
-        });
-        
-        // Iniciar un juego al cargar
-        window.addEventListener('load', () => {
-            startBlackjack();
         });
         
         // Ruleta
@@ -918,7 +520,15 @@
             // Resultado después de 4 segundos
             setTimeout(() => {
                 const winningNumber = Math.floor(Math.random() * 37);
-                const winningColor = winningNumber === 0 ? 'green' : (winningNumber % 2 === 0 ? 'black' : 'red');
+                let winningColor;
+                
+                if (winningNumber === 0) {
+                    winningColor = 'green';
+                } else if (winningNumber % 2 === 0) {
+                    winningColor = 'black';
+                } else {
+                    winningColor = 'red';
+                }
                 
                 let resultText = `Número: ${winningNumber} - ${winningColor}`;
                 
@@ -934,6 +544,18 @@
                 document.getElementById('balance').textContent = balance;
             }, 4000);
         }
+        
+        // Simular cambio de saldo Bitcoin
+        setInterval(() => {
+            const balanceElement = document.getElementById('btc-balance');
+            let currentBalance = parseFloat(balanceElement.textContent);
+            
+            // Pequeña variación aleatoria para simular cambio de valor
+            const change = (Math.random() - 0.5) * 0.0001;
+            const newBalance = Math.max(0.001, currentBalance + change);
+            
+            balanceElement.textContent = newBalance.toFixed(8);
+        }, 5000);
     </script>
 </body>
 </html>
