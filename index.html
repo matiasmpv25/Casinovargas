@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Online Legal | Juego Responsable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0d5c63;
+            --secondary: #44a1a0;
+            --accent: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --warning: #f8b400;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: rgba(13, 92, 99, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+            color: var(--accent);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .btn-login {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .btn-register {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero {
+            padding: 6rem 5% 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.9)), url('https://images.unsplash.com/photo-1519817914152-22d216bb9170?ixlib=rb-4.0.3') no-repeat center center/cover;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #e0e0e0;
+        }
+        
+        .btn-play {
+            background: var(--warning);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            margin: 0 1rem;
+        }
+        
+        .btn-learn {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .features {
+            padding: 5rem 5%;
+            background: var(--dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(68, 161, 160, 0.5);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+        
+        .games {
+            padding: 5rem 5%;
+            background: linear-gradient(to bottom, var(--dark) 0%, #0f0f1f 100%);
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .game-card {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .game-image {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .game-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem;
+            transform: translateY(40px);
+            transition: transform 0.3s ease;
+        }
+        
+        .game-card:hover .game-overlay {
+            transform: translateY(0);
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .btn-play-sm {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1.2rem;
+            font-weight: 600;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 1rem;
+            text-decoration: none;
+        }
+        
+        .responsible-gaming {
+            padding: 5rem 5%;
+            background: var(--primary);
+            text-align: center;
+        }
+        
+        .responsible-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .responsible-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--warning);
+        }
+        
+        .responsible-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .tips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tip {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 220px;
+        }
+        
+        .tip i {
+            font-size: 2.5rem;
+            color: var(--warning);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: #0a0a1a;
+            padding: 4rem 5% 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .legal-logos {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .legal-logo {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .age-restriction {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--warning);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-play, .btn-learn {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-dice"></i>
+            <h1>Casino<span>Legit</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#">Juegos</a></li>
+                <li><a href="#">Promociones</a></li>
+                <li><a href="#">Soporte</a></li>
+                <li><a href="#">Responsabilidad</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="btn btn-login">Iniciar Sesión</button>
+            <button class="btn btn-register">Registrarse</button>
+        </div>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero">
+        <h2>Diversión y Emoción en un Entorno Seguro</h2>
+        <p>Disfruta de los mejores juegos de casino con licencia oficial y políticas de juego responsable</p>
+        <div class="hero-buttons">
+            <button class="btn btn-play"><i class="fas fa-play"></i> Jugar Ahora</button>
+            <button class="btn btn-learn">Aprende Más</button>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section class="features">
+        <div class="section-title">
+            <h2>Por Qué Elegirnos</h2>
+            <p>Ofrecemos una experiencia de juego segura, legal y entretenida con las mejores prácticas de la industria</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Totalmente Legal</h3>
+                <p>Operamos con licencia oficial y cumplimos con todas las regulaciones para garantizar la seguridad de nuestros jugadores.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Protección de Datos</h3>
+                <p>Tus datos personales y financieros están protegidos con tecnología de encriptación de última generación.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Juegos Certificados</h3>
+                <p>Todos nuestros juegos son auditados regularmente para garantizar la equidad y resultados aleatorios.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Juegos populares -->
+    <section class="games">
+        <div class="section-title">
+            <h2>Juegos Populares</h2>
+            <p>Descubre nuestra amplia selección de juegos de casino con los mejores proveedores del mundo</p>
+        </div>
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1582657118090-af35e07544f9?ixlib=rb-4.0.3');">
+                    <div class="game-overlay">
+                        <h3 class="game-title">Tragaperras Clásicas</h3>
+                        <div class="game-info">
+                            <span>96.5% RTP</span>
+                            <span>Alta Volatilidad</span>
+                        </div>
+                        <a href="#" class="btn-play-sm">Jugar Ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1600857062241-98c0a9e0e34f?ixlib=rb-4.0.3');">
+                    <div class="game-overlay">
+                        <h3 class="game-title">Blackjack</h3>
+                        <div class="game-info">
+                            <span>99.2% RTP</span>
+                            <span>Habilidad</span>
+                        </div>
+                        <a href="#" class="btn-play-sm">Jugar Ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1543365067-f488401f7b15?ixlib=rb-4.0.3');">
+                    <div class="game-overlay">
+                        <h3 class="game-title">Ruleta</h3>
+                        <div class="game-info">
+                            <span>97.3% RTP</span>
+                            <span>Variantes Europeas</span>
+                        </div>
+                        <a href="#" class="btn-play-sm">Jugar Ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Juego Responsable -->
+    <section class="responsible-gaming">
+        <div class="responsible-content">
+            <h2>Juego Responsable</h2>
+            <p>En CasinoLegit promovemos el juego como una forma de entretenimiento. Creemos en ofrecer un ambiente seguro donde nuestros jugadores puedan disfrutar de manera responsable. Ofrecemos herramientas para ayudarte a controlar tu juego y prevenir problemas.</p>
+            
+            <div class="tips">
+                <div class="tip">
+                    <i class="fas fa-clock"></i>
+                    <h4>Límites de Tiempo</h4>
+                    <p>Establece límites de tiempo para tus sesiones de juego</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-coins"></i>
+                    <h4>Límites de Depósito</h4>
+                    <p>Controla tus gastos con límites diarios, semanales o mensuales</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-ban"></i>
+                    <h4>Autoexclusión</h4>
+                    <p>Opción de autoexclusión temporal o permanente si lo necesitas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CasinoLegit</h3>
+                <p>Operado por Entretenimiento Digital SL, con licencia otorgada por la Dirección General de Ordenación del Juego bajo el número RGL 12345.</p>
+                <div class="legal-logos">
+                    <div class="legal-logo">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="legal-logo">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="legal-logo">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Juegos</a></li>
+                    <li><a href="#">Promociones</a></li>
+                    <li><a href="#">Torneos</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Información Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                    <li><a href="#">Juego Responsable</a></li>
+                    <li><a href="#">Reglamento de Juegos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Soporte</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Chat en Vivo</a></li>
+                    <li><a href="#">Guías de Juego</a></li>
+                    <li><a href="#">Reclamaciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 CasinoLegit. Todos los derechos reservados. El juego puede ser adictivo. Juega con responsabilidad. Prohibida la participación de menores de 18 años.</p>
+        </div>
+    </footer>
+
+    <!-- Restricción de edad -->
+    <div class="age-restriction">
+        <i class="fas fa-exclamation-triangle"></i> +18
+    </div>
+</body>
+</html>
