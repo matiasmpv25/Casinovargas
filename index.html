@@ -5,275 +5,361 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vargas Casino | La Experiencia de Juego Definitiva</title>
     
-    <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Custom styles to complement Tailwind CSS */
-        body {
-            background-color: #0F0F1A;
-            color: #E0E0E0;
-            font-family: 'Poppins', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .font-rajdhani {
-            font-family: 'Rajdhani', sans-serif;
-        }
-
-        /* Custom gradients and glows */
-        .bg-gradient-main {
-            background: linear-gradient(180deg, #1A1A2E 0%, #0F0F1A 100%);
-        }
-        .bg-gradient-hero {
-             background: radial-gradient(circle at 50% 0%, rgba(194, 0, 255, 0.08), transparent 40%),
-                         radial-gradient(circle at 10% 10%, rgba(0, 255, 255, 0.08), transparent 30%),
-                         radial-gradient(circle at 90% 80%, rgba(242, 169, 0, 0.08), transparent 40%),
-                         #11111F;
-        }
+        /* --- General Page Styles --- */
+        body { background-color: #0F0F1A; color: #E0E0E0; font-family: 'Poppins', sans-serif; }
+        .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+        .bg-gradient-main { background: linear-gradient(180deg, #1A1A2E 0%, #0F0F1A 100%); }
         .btn-primary {
             background: linear-gradient(90deg, #C200FF 0%, #5F00FF 100%);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(194, 0, 255, 0.3);
+            transition: all 0.3s ease; box-shadow: 0 0 15px rgba(194, 0, 255, 0.3);
         }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(194, 0, 255, 0.5);
-        }
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        .text-glow-purple {
-            color: #d88aff;
-            text-shadow: 0 0 10px rgba(194, 0, 255, 0.7);
-        }
-        .text-glow-cyan {
-            color: #00FFFF;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        /* Game card styling */
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px rgba(194, 0, 255, 0.5); }
+        .text-glow-purple { color: #d88aff; text-shadow: 0 0 10px rgba(194, 0, 255, 0.7); }
+        .text-glow-cyan { color: #00FFFF; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
         .game-card {
             background: linear-gradient(145deg, #1e1e38, #141428);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(194, 0, 255, 0.2);
-        }
+        .game-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(194, 0, 255, 0.2); }
         .game-card .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15, 15, 26, 1) 10%, rgba(15, 15, 26, 0) 70%);
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(15, 15, 26, 1) 20%, rgba(15, 15, 26, 0) 80%);
             z-index: 2;
         }
-        .game-card img {
-            transition: transform 0.4s ease;
+
+        /* --- Game Modal Styles --- */
+        #game-modal { transition: opacity 0.3s ease-in-out; }
+        #game-modal-content { transform: scale(0.95); transition: transform 0.3s ease-in-out; }
+        #game-modal:not(.hidden) #game-modal-content { transform: scale(1); }
+
+        /* --- Sweet Bonanza Clone Styles --- */
+        .bonanza-container {
+            background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+            padding: 1rem; border-radius: 20px; border: 8px solid #d4a373;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 500px;
+            font-family: 'Poppins', sans-serif; font-weight: 700;
         }
-        .game-card:hover img {
-            transform: scale(1.05);
+        .bonanza-header {
+            text-align: center; font-size: 2.5rem; font-weight: 900; color: white;
+            text-shadow: 2px 2px 0 #c71585, 4px 4px 0 #8a2be2; margin-bottom: 1rem;
         }
-        
-        /* Provider logo styling */
-        .provider-logo {
-            transition: all 0.3s ease;
-            filter: grayscale(80%) brightness(0.8);
+        .bonanza-grid {
+            display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+            background-color: rgba(0,0,0,0.1); padding: 8px; border-radius: 10px;
+            border: 4px solid rgba(255,255,255,0.3); margin-bottom: 1rem;
+            overflow: hidden; /* Important for the reel effect */
         }
-        .provider-logo:hover {
-            filter: grayscale(0%) brightness(1);
-            transform: scale(1.1);
+        .bonanza-reel {
+            display: flex; flex-direction: column;
+            transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .bonanza-symbol {
+            width: 100%; aspect-ratio: 1/1; font-size: clamp(1.5rem, 6vw, 2.5rem);
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 8px; transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center center; flex-shrink: 0;
+        }
+        .bonanza-symbol.pop { animation: pop 0.3s ease-out forwards; }
+        @keyframes pop {
+            0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(0); opacity: 0; }
+        }
+        .bonanza-symbol.new-fall { animation: new-fall 0.5s ease-out forwards; }
+        @keyframes new-fall {
+            0% { transform: translateY(-200%); } 100% { transform: translateY(0); }
+        }
+        .bonanza-controls {
+            display: grid; grid-template-columns: 1fr 1.5fr 1fr;
+            align-items: center; gap: 1rem;
+        }
+        .bonanza-spin-btn {
+            background-color: #34d399; border: 4px solid white; border-radius: 50%;
+            width: 80px; height: 80px; margin: 0 auto; display: flex; justify-content: center; align-items: center;
+            color: white; font-size: 2.5rem; cursor: pointer; transition: all 0.2s ease;
+            box-shadow: 0 5px 0 #15803d;
+        }
+        .bonanza-spin-btn:hover:not(:disabled) { background-color: #6ee7b7; }
+        .bonanza-spin-btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #15803d; }
+        .bonanza-spin-btn:disabled { background-color: #9ca3af; box-shadow: 0 5px 0 #4b5563; cursor: not-allowed; }
+        .bonanza-bet-display { text-align: center; color: white; }
+        .bonanza-bet-display .label { font-size: 0.8rem; opacity: 0.8; }
+        .bonanza-bet-display .value { font-size: 1.5rem; }
+        .bonanza-bet-controls button {
+            background: #8a2be2; color: white; border: none;
+            width: 40px; height: 40px; border-radius: 50%;
+            font-size: 1.5rem; cursor: pointer;
         }
     </style>
 </head>
 <body class="bg-gradient-main">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-black bg-opacity-30 backdrop-blur-lg border-b border-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <a href="#" class="text-3xl font-black tracking-widest font-rajdhani uppercase">
-                    VARGAS<span class="text-purple-400">CASINO</span>
-                </a>
-
-                <!-- Navigation -->
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#games" class="text-gray-300 hover:text-purple-400 transition duration-300">Juegos</a>
-                    <a href="#live-casino" class="text-gray-300 hover:text-purple-400 transition duration-300">Casino en Vivo</a>
-                    <a href="#promotions" class="text-gray-300 hover:text-purple-400 transition duration-300">Promociones</a>
-                </nav>
-
-                <!-- Auth Buttons -->
-                <div class="flex items-center space-x-4">
-                    <button class="btn-secondary px-6 py-2 rounded-full font-semibold">Iniciar Sesión</button>
-                    <button class="btn-primary text-white px-6 py-2 rounded-full font-bold">Registrarse</button>
-                </div>
-            </div>
-        </div>
+    <!-- Header and other sections -->
+    <header class="sticky top-0 z-40 bg-black bg-opacity-30 backdrop-blur-lg border-b border-gray-800">
+        <div class="container mx-auto px-4"><div class="flex items-center justify-between h-20"><a href="#" class="text-3xl font-black tracking-widest font-rajdhani uppercase">VARGAS<span class="text-purple-400">CASINO</span></a><nav class="hidden md:flex items-center space-x-8"><a href="#games" class="text-gray-300 hover:text-purple-400">Juegos</a></nav><div class="flex items-center space-x-4"><button class="bg-gray-800 px-6 py-2 rounded-full font-semibold">Iniciar Sesión</button><button class="btn-primary text-white px-6 py-2 rounded-full font-bold">Registrarse</button></div></div></div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="relative py-24 md:py-32 bg-gradient-hero overflow-hidden">
-        <div class="container mx-auto px-4 text-center z-10 relative">
-            <h1 class="text-4xl md:text-7xl font-black uppercase font-rajdhani tracking-wider leading-tight">
-                La Experiencia de Juego <span class="text-glow-purple">Definitiva</span>
-            </h1>
-            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">
-                Sumérgete en un universo de emoción con miles de juegos, promociones exclusivas y la acción del casino en vivo.
-            </p>
-            <div class="mt-8 flex justify-center space-x-4">
-                <a href="#games" class="btn-primary text-white px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2">
-                    <i class="fas fa-gamepad"></i>
-                    <span>Explorar Juegos</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    <section class="relative py-24 md:py-32 bg-gradient-hero"><div class="container mx-auto px-4 text-center z-10 relative"><h1 class="text-4xl md:text-7xl font-black uppercase font-rajdhani">La Experiencia de Juego <span class="text-glow-purple">Definitiva</span></h1><p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">Sumérgete en un universo de emoción con miles de juegos y promociones exclusivas.</p><div class="mt-8"><a href="#games" class="btn-primary text-white px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2 mx-auto w-fit"><i class="fas fa-gamepad"></i><span>Explorar Juegos</span></a></div></div></section>
     
-    <!-- Providers Section -->
-    <section class="py-12 bg-black bg-opacity-20">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-center items-center flex-wrap gap-x-8 md:gap-x-12 gap-y-4">
-                <img src="https://placehold.co/150x50/ffffff/000000?text=Pragmatic+Play" alt="Pragmatic Play" class="h-8 md:h-10 provider-logo">
-                <img src="https://placehold.co/150x50/ffffff/000000?text=Evolution" alt="Evolution Gaming" class="h-8 md:h-10 provider-logo">
-                <img src="https://placehold.co/150x50/ffffff/000000?text=NetEnt" alt="NetEnt" class="h-8 md:h-10 provider-logo">
-                <img src="https://placehold.co/150x50/ffffff/000000?text=Play'n+GO" alt="Play'n GO" class="h-8 md:h-10 provider-logo">
-                <img src="https://placehold.co/150x50/ffffff/000000?text=Nolimit+City" alt="Nolimit City" class="h-8 md:h-10 provider-logo">
-            </div>
-        </div>
-    </section>
-
     <!-- Games Section -->
     <section id="games" class="py-20">
         <div class="container mx-auto px-4">
-            <!-- Popular Slots -->
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold font-rajdhani uppercase mb-6">Tragamonedas <span class="text-glow-cyan">Populares</span></h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/FFFF00?text=Gates+of+Olympus" class="w-full h-full object-cover"><div class="overlay"></div></div>
-                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/FF0000?text=Sweet+Bonanza" class="w-full h-full object-cover"><div class="overlay"></div></div>
-                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/00FFFF?text=Sugar+Rush" class="w-full h-full object-cover"><div class="overlay"></div></div>
-                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/00FF00?text=Book+of+Dead" class="w-full h-full object-cover"><div class="overlay"></div></div>
-                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/FFA500?text=The+Dog+House" class="w-full h-full object-cover"><div class="overlay"></div></div>
-                </div>
-            </div>
-
-            <!-- Live Casino -->
-            <div id="live-casino" class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold font-rajdhani uppercase mb-6">Casino <span class="text-glow-purple">en Vivo</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="game-card rounded-2xl">
-                        <img src="https://placehold.co/600x400/1A1A2E/C200FF?text=Lightning+Roulette" alt="Ruleta en Vivo" class="absolute inset-0 w-full h-full object-cover z-0">
-                        <div class="overlay"></div>
-                        <div class="relative z-10 flex flex-col justify-end h-64 p-6">
-                            <h3 class="text-3xl font-bold">Lightning Roulette</h3>
-                            <p class="text-purple-300">Siente el poder del rayo con multiplicadores de hasta 500x.</p>
-                        </div>
+            <h2 class="text-3xl md:text-4xl font-bold font-rajdhani uppercase mb-6">Nuestros <span class="text-glow-cyan">Juegos Exclusivos</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <div class="game-card rounded-2xl flex flex-col">
+                    <div class="relative h-64">
+                       <img src="https://placehold.co/400x600/ff7e5f/ffffff?text=Bonanza+de+Vargas" class="w-full h-full object-cover">
+                       <div class="overlay"></div>
                     </div>
-                    <div class="game-card rounded-2xl">
-                        <img src="https://placehold.co/600x400/1A1A2E/00FFFF?text=Crazy+Time" alt="Game Show en Vivo" class="absolute inset-0 w-full h-full object-cover z-0">
-                        <div class="overlay"></div>
-                        <div class="relative z-10 flex flex-col justify-end h-64 p-6">
-                            <h3 class="text-3xl font-bold">Crazy Time</h3>
-                            <p class="text-cyan-300">El game show más loco con 4 rondas de bonus.</p>
-                        </div>
-                    </div>
-                    <div class="game-card rounded-2xl">
-                        <img src="https://placehold.co/600x400/1A1A2E/FFFFFF?text=VIP+Blackjack" alt="Blackjack en Vivo" class="absolute inset-0 w-full h-full object-cover z-0">
-                        <div class="overlay"></div>
-                        <div class="relative z-10 flex flex-col justify-end h-64 p-6">
-                            <h3 class="text-3xl font-bold">VIP Blackjack</h3>
-                            <p class="text-gray-300">Mesas exclusivas para una experiencia premium.</p>
-                        </div>
+                    <div class="p-4 flex flex-col flex-grow z-10 bg-[#191932]">
+                        <h3 class="font-bold text-lg">Bonanza de Vargas</h3>
+                        <p class="text-sm text-gray-400 flex-grow">¡Tiradas con premios en cascada!</p>
+                        <button id="launch-game-btn" class="mt-4 w-full btn-primary text-white font-bold py-2 rounded-lg">Jugar Demo</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Promotions / VIP Section -->
-    <section id="promotions" class="py-20 bg-black bg-opacity-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold font-rajdhani uppercase">Club <span class="text-glow-purple">VIP Exclusivo</span></h2>
-                <p class="text-gray-400 mt-2">Recompensamos tu lealtad con beneficios únicos.</p>
-            </div>
-
-            <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
-                <div class="bg-gray-900 bg-opacity-50 p-8 rounded-xl border border-gray-800">
-                    <i class="fas fa-star text-purple-400 text-4xl mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Bonos Semanales</h3>
-                    <p class="text-gray-400">Recibe bonos de recarga y giros gratis cada semana para potenciar tu juego.</p>
-                </div>
-                <div class="bg-gray-900 bg-opacity-50 p-8 rounded-xl border-2 border-purple-500 shadow-lg shadow-purple-500/20">
-                    <i class="fas fa-crown text-purple-400 text-4xl mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Manager Personal</h3>
-                    <p class="text-gray-400">Un agente VIP dedicado para atender todas tus necesidades y consultas 24/7.</p>
-                </div>
-                <div class="bg-gray-900 bg-opacity-50 p-8 rounded-xl border border-gray-800">
-                    <i class="fas fa-gift text-purple-400 text-4xl mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Retiros Rápidos</h3>
-                    <p class="text-gray-400">Disfruta de límites de retiro más altos y procesamiento prioritario en tus ganancias.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black bg-opacity-40 border-t border-gray-800 pt-12 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- About -->
-                <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-3xl font-black tracking-widest font-rajdhani uppercase">
-                        VARGAS<span class="text-purple-400">CASINO</span>
-                    </h3>
-                    <p class="mt-4 text-gray-400 max-w-md">
-                        Vargas Casino es tu destino para el entretenimiento de primer nivel. Ofrecemos una plataforma segura y justa con miles de juegos de los mejores proveedores.
-                    </p>
-                </div>
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Navegación</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#games" class="text-gray-400 hover:text-purple-400">Tragamonedas</a></li>
-                        <li><a href="#live-casino" class="text-gray-400 hover:text-purple-400">Casino en Vivo</a></li>
-                        <li><a href="#promotions" class="text-gray-400 hover:text-purple-400">Promociones</a></li>
-                    </ul>
-                </div>
-                <!-- Legal -->
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Legal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Términos de Uso</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Política de Privacidad</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Juego Responsable</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-12 border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Vargas Casino. Todos los derechos reservados. El juego puede ser adictivo. Juega de forma responsable. Prohibido para menores de 18 años.</p>
-            </div>
-        </div>
-    </footer>
     
+    <!-- GAME MODAL (Initially Hidden) -->
+    <div id="game-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4 opacity-0">
+        <div id="game-modal-content" class="relative w-full">
+            <button id="close-modal-btn" class="absolute -top-2 -right-2 w-10 h-10 bg-white text-black rounded-full text-2xl font-bold z-10">&times;</button>
+            <div class="bonanza-container">
+                <h1 class="bonanza-header">Bonanza de Vargas</h1>
+                <div id="bonanza-grid" class="bonanza-grid"></div>
+                <div class="bonanza-controls">
+                    <div class="bonanza-bet-display"><div class="label">CRÉDITO</div><div id="balance-display" class="value">1000.00</div></div>
+                    <button id="spin-btn" class="bonanza-spin-btn"><i class="fas fa-sync-alt"></i></button>
+                    <div class="bonanza-bet-display"><div class="label">APUESTA</div><div class="flex items-center justify-center gap-2"><button id="bet-down-btn" class="bonanza-bet-controls">-</button><span id="bet-display" class="value">2.00</span><button id="bet-up-btn" class="bonanza-bet-controls">+</button></div></div>
+                </div>
+                <div id="win-display" class="text-center text-2xl font-black text-white mt-4 text-glow-purple"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- MODAL LOGIC ---
+        const gameModal = document.getElementById('game-modal');
+        const launchGameBtn = document.getElementById('launch-game-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        launchGameBtn.addEventListener('click', () => { gameModal.classList.remove('hidden'); setTimeout(() => gameModal.classList.remove('opacity-0'), 10); });
+        closeModalBtn.addEventListener('click', () => { gameModal.classList.add('opacity-0'); setTimeout(() => gameModal.classList.add('hidden'), 300); });
+
+        // --- BONANZA GAME LOGIC ---
+        const GRID_ROWS = 5;
+        const GRID_COLS = 6;
+        const WIN_THRESHOLD = 8;
+        const WIN_PROBABILITY = 0.4;
+
+        const SYMBOLS = ['❤️', '💜', '💚', '💙', '🍎', '🍇', '🍉', '🍌'];
+        const PAYOUTS = { '❤️': 10, '💜': 5, '💚': 4, '💙': 3, '🍎': 2, '🍇': 1.5, '🍉': 1, '🍌': 0.8 };
+
+        const gridContainer = document.getElementById('bonanza-grid');
+        const spinBtn = document.getElementById('spin-btn');
+        const balanceDisplay = document.getElementById('balance-display');
+        const betDisplay = document.getElementById('bet-display');
+        const winDisplay = document.getElementById('win-display');
+        const betUpBtn = document.getElementById('bet-up-btn');
+        const betDownBtn = document.getElementById('bet-down-btn');
+
+        let balance = 1000;
+        const betAmounts = [2, 5, 10, 20];
+        let currentBetIndex = 0;
+        let isSpinning = false;
+        let reels = [];
+
+        const updateDisplays = () => {
+            balanceDisplay.textContent = balance.toFixed(2);
+            betDisplay.textContent = betAmounts[currentBetIndex].toFixed(2);
+        };
+
+        const changeBet = (direction) => {
+            if (isSpinning) return;
+            currentBetIndex = Math.max(0, Math.min(betAmounts.length - 1, currentBetIndex + direction));
+            updateDisplays();
+        };
+
+        betUpBtn.addEventListener('click', () => changeBet(1));
+        betDownBtn.addEventListener('click', () => changeBet(-1));
+        spinBtn.addEventListener('click', () => spin());
+
+        const createGrid = () => {
+            gridContainer.innerHTML = '';
+            reels = [];
+            for (let i = 0; i < GRID_COLS; i++) {
+                const reelElement = document.createElement('div');
+                reelElement.classList.add('bonanza-reel');
+                gridContainer.appendChild(reelElement);
+                reels.push(reelElement);
+            }
+            // Populate with initial static symbols
+            const initialSymbols = generateInitialGrid(false);
+            reels.forEach((reel, colIndex) => {
+                for(let rowIndex=0; rowIndex < GRID_ROWS; rowIndex++) {
+                    const symbol = initialSymbols[rowIndex * GRID_COLS + colIndex];
+                    const cell = document.createElement('div');
+                    cell.classList.add('bonanza-symbol');
+                    cell.innerHTML = symbol;
+                    reel.appendChild(cell);
+                }
+            });
+        };
+        
+        const spin = async () => {
+            if (isSpinning) return;
+            const bet = betAmounts[currentBetIndex];
+            if (balance < bet) { alert("Crédito insuficiente."); return; }
+
+            isSpinning = true;
+            spinBtn.disabled = true;
+            winDisplay.textContent = '';
+            balance -= bet;
+            updateDisplays();
+
+            const shouldWin = Math.random() < WIN_PROBABILITY;
+            const finalGridSymbols = generateInitialGrid(shouldWin);
+            
+            const spinPromises = reels.map((reel, colIndex) => {
+                return new Promise(resolve => {
+                    const symbolHeight = reel.querySelector('.bonanza-symbol').clientHeight;
+                    const spinCount = 20; // Number of symbols to "roll"
+                    const totalSpinHeight = (spinCount + GRID_ROWS) * symbolHeight;
+                    
+                    reel.style.transition = 'none';
+                    reel.style.transform = 'translateY(0)';
+                    
+                    // Generate a long strip of symbols for animation
+                    let reelStripHtml = '';
+                    for(let i=0; i < spinCount; i++) {
+                        reelStripHtml += `<div class="bonanza-symbol">${SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]}</div>`;
+                    }
+                    // Add final symbols at the end of the strip
+                    for(let i=0; i < GRID_ROWS; i++) {
+                        reelStripHtml += `<div class="bonanza-symbol">${finalGridSymbols[i * GRID_COLS + colIndex]}</div>`;
+                    }
+                    reel.innerHTML = reelStripHtml;
+
+                    // Animate
+                    setTimeout(() => {
+                        reel.style.transition = `transform ${2 + colIndex * 0.2}s cubic-bezier(0.25, 1, 0.5, 1)`;
+                        reel.style.transform = `translateY(-${spinCount * symbolHeight}px)`;
+                    }, 100);
+
+                    setTimeout(resolve, 2000 + colIndex * 200);
+                });
+            });
+
+            await Promise.all(spinPromises);
+            
+            // Cleanup reels to only show final symbols
+            reels.forEach((reel, colIndex) => {
+                const finalSymbolsHtml = Array.from(reel.children).slice(-GRID_ROWS).map(s => s.outerHTML).join('');
+                reel.style.transition = 'none';
+                reel.style.transform = 'translateY(0)';
+                reel.innerHTML = finalSymbolsHtml;
+            });
+            
+            await handleTumbles();
+        };
+
+        const generateInitialGrid = (forceWin) => {
+            let symbols = Array.from({ length: GRID_ROWS * GRID_COLS }, () => SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]);
+            let counts = {};
+            symbols.forEach(s => counts[s] = (counts[s] || 0) + 1);
+
+            if (forceWin) {
+                const winSymbol = SYMBOLS[Math.floor(Math.random() * 4)];
+                while ((counts[winSymbol] || 0) < WIN_THRESHOLD) {
+                    const randomIndex = Math.floor(Math.random() * symbols.length);
+                    const oldSymbol = symbols[randomIndex];
+                    if (oldSymbol !== winSymbol) {
+                        symbols[randomIndex] = winSymbol;
+                        counts[oldSymbol]--;
+                        counts[winSymbol] = (counts[winSymbol] || 0) + 1;
+                    }
+                }
+            } else { // Force loss
+                for (const symbol in counts) {
+                    while (counts[symbol] >= WIN_THRESHOLD) {
+                        const indexToReplace = symbols.findIndex(s => s === symbol);
+                        let newSymbol;
+                        do {
+                            newSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                        } while (newSymbol === symbol);
+                        symbols[indexToReplace] = newSymbol;
+                        counts[symbol]--;
+                        counts[newSymbol] = (counts[newSymbol] || 0) + 1;
+                    }
+                }
+            }
+            return symbols;
+        };
+
+        const handleTumbles = async () => {
+            let totalWinThisSpin = 0;
+            while (true) {
+                const counts = {};
+                reels.forEach(reel => {
+                    Array.from(reel.children).forEach(cell => {
+                        counts[cell.innerHTML] = (counts[cell.innerHTML] || 0) + 1;
+                    });
+                });
+
+                const winningSymbols = Object.keys(counts).filter(s => counts[s] >= WIN_THRESHOLD);
+                if (winningSymbols.length === 0) {
+                    if (totalWinThisSpin > 0) balance += totalWinThisSpin;
+                    updateDisplays();
+                    isSpinning = false;
+                    spinBtn.disabled = false;
+                    return;
+                }
+
+                let winThisTumble = 0;
+                winningSymbols.forEach(symbol => {
+                    winThisTumble += PAYOUTS[symbol] * counts[symbol] * (betAmounts[currentBetIndex] / 10);
+                });
+                totalWinThisSpin += winThisTumble;
+                winDisplay.textContent = `GANANCIA: ${totalWinThisSpin.toFixed(2)}`;
+
+                reels.forEach(reel => {
+                    Array.from(reel.children).forEach(cell => {
+                        if (winningSymbols.includes(cell.innerHTML)) cell.classList.add('pop');
+                    });
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 300));
+
+                reels.forEach(reel => {
+                    const remainingSymbols = Array.from(reel.children).filter(c => !c.classList.contains('pop'));
+                    reel.innerHTML = '';
+                    const newSymbolsCount = GRID_ROWS - remainingSymbols.length;
+                    for (let i = 0; i < newSymbolsCount; i++) {
+                        const cell = document.createElement('div');
+                        cell.classList.add('bonanza-symbol', 'new-fall');
+                        cell.innerHTML = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                        reel.appendChild(cell);
+                    }
+                    remainingSymbols.forEach(cell => {
+                        cell.classList.remove('pop');
+                        reel.appendChild(cell);
+                    });
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        };
+
+        createGrid();
+        updateDisplays();
+    });
+    </script>
 </body>
 </html>
