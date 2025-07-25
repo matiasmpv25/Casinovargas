@@ -3,340 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Casino Demo | Juegos Gratuitos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Vargas Casino | La Experiencia de Juego Definitiva</title>
+    
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Estilos existentes... */
-        
-        /* Nuevos estilos para Bitcoin */
-        .bitcoin-theme {
-            background: linear-gradient(135deg, #0d5c63 0%, #1a1a2e 100%);
-            border: 2px solid #f2a900;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
+        /* Custom styles to complement Tailwind CSS */
+        body {
+            background-color: #0F0F1A;
+            color: #E0E0E0;
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        /* Custom gradients and glows */
+        .bg-gradient-main {
+            background: linear-gradient(180deg, #1A1A2E 0%, #0F0F1A 100%);
+        }
+        .bg-gradient-hero {
+             background: radial-gradient(circle at 50% 0%, rgba(194, 0, 255, 0.08), transparent 40%),
+                         radial-gradient(circle at 10% 10%, rgba(0, 255, 255, 0.08), transparent 30%),
+                         radial-gradient(circle at 90% 80%, rgba(242, 169, 0, 0.08), transparent 40%),
+                         #11111F;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #C200FF 0%, #5F00FF 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(194, 0, 255, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(194, 0, 255, 0.5);
+        }
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .text-glow-purple {
+            color: #d88aff;
+            text-shadow: 0 0 10px rgba(194, 0, 255, 0.7);
+        }
+        .text-glow-cyan {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Game card styling */
+        .game-card {
+            background: linear-gradient(145deg, #1e1e38, #141428);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        
-        .bitcoin-theme::before {
-            content: "₿";
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(194, 0, 255, 0.2);
+        }
+        .game-card .overlay {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 5rem;
-            opacity: 0.1;
-            color: #f2a900;
-            transform: rotate(25deg);
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 15, 26, 1) 10%, rgba(15, 15, 26, 0) 70%);
+            z-index: 2;
+        }
+        .game-card img {
+            transition: transform 0.4s ease;
+        }
+        .game-card:hover img {
+            transform: scale(1.05);
         }
         
-        .bitcoin-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .bitcoin-logo {
-            color: #f2a900;
-            font-size: 2.5rem;
-        }
-        
-        .bitcoin-wallet {
-            background: rgba(242, 169, 0, 0.1);
-            border: 1px solid rgba(242, 169, 0, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .wallet-address {
-            font-family: monospace;
-            word-break: break-all;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 8px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .wallet-balance {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .bitcoin-provably {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 0.9rem;
-        }
-        
-        .verification-code {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin: 10px 0;
-        }
-        
-        .verification-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            padding: 8px;
-            color: white;
-            font-family: monospace;
-        }
-        
-        .bitcoin-btn {
-            background: linear-gradient(to right, #f2a900, #f2a900);
-            color: #1a1a2e;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* Provider logo styling */
+        .provider-logo {
             transition: all 0.3s ease;
+            filter: grayscale(80%) brightness(0.8);
         }
-        
-        .bitcoin-btn:hover {
-            background: linear-gradient(to right, #ffc107, #ff9800);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(242, 169, 0, 0.3);
-        }
-        
-        .affiliate-section {
-            background: rgba(13, 92, 99, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .affiliate-logos {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .affiliate-logo {
-            width: 120px;
-            height: 60px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        
-        .affiliate-logo img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        .demo-note {
-            background: rgba(255, 107, 107, 0.15);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .bitcoin-theme {
-                padding: 15px;
-            }
-            
-            .bitcoin-logo {
-                font-size: 2rem;
-            }
-            
-            .wallet-balance {
-                font-size: 1.3rem;
-            }
+        .provider-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body>
-    <!-- Header con navegación -->
-    <header>
-        <div class="logo">
-            <i class="fab fa-bitcoin bitcoin-logo"></i> <!-- Cambiamos a logo Bitcoin -->
-            <h1>Bitcoin<span>Casino</span>Demo</h1> <!-- Cambiamos el nombre -->
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#games">Juegos Gratis</a></li>
-                <li><a href="#bitcoin">Bitcoin</a></li> <!-- Nueva sección -->
-                <li><a href="#">Soporte</a></li>
-                <li><a href="#">Responsabilidad</a></li>
-            </ul>
-        </nav>
-        <div class="auth-buttons">
-            <button class="btn btn-login">Iniciar Sesión</button>
-            <button class="btn btn-register">Registrarse</button>
+<body class="bg-gradient-main">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-black bg-opacity-30 backdrop-blur-lg border-b border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="text-3xl font-black tracking-widest font-rajdhani uppercase">
+                    VARGAS<span class="text-purple-400">CASINO</span>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#games" class="text-gray-300 hover:text-purple-400 transition duration-300">Juegos</a>
+                    <a href="#live-casino" class="text-gray-300 hover:text-purple-400 transition duration-300">Casino en Vivo</a>
+                    <a href="#promotions" class="text-gray-300 hover:text-purple-400 transition duration-300">Promociones</a>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button class="btn-secondary px-6 py-2 rounded-full font-semibold">Iniciar Sesión</button>
+                    <button class="btn-primary text-white px-6 py-2 rounded-full font-bold">Registrarse</button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Sección Hero -->
-    <section class="hero">
-        <h2>Casino Bitcoin Demo Gratuito</h2>
-        <p>Experimenta la tecnología blockchain con nuestros juegos de demostración sin necesidad de registrarte ni apostar dinero real</p>
-        <div class="hero-buttons">
-            <button class="btn btn-play"><i class="fas fa-play"></i> Jugar Ahora</button>
-            <button class="btn btn-learn">Cómo Funciona</button>
+    <!-- Hero Section -->
+    <section class="relative py-24 md:py-32 bg-gradient-hero overflow-hidden">
+        <div class="container mx-auto px-4 text-center z-10 relative">
+            <h1 class="text-4xl md:text-7xl font-black uppercase font-rajdhani tracking-wider leading-tight">
+                La Experiencia de Juego <span class="text-glow-purple">Definitiva</span>
+            </h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">
+                Sumérgete en un universo de emoción con miles de juegos, promociones exclusivas y la acción del casino en vivo.
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="#games" class="btn-primary text-white px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Explorar Juegos</span>
+                </a>
+            </div>
         </div>
     </section>
-
-    <!-- Nueva sección Bitcoin -->
-    <section class="features" id="bitcoin">
-        <div class="section-title">
-            <h2>Tecnología Bitcoin en Casinos</h2>
-            <p>Descubre cómo funciona la tecnología blockchain en los juegos de casino</p>
-        </div>
-        
-        <div class="bitcoin-theme">
-            <div class="bitcoin-header">
-                <i class="fab fa-bitcoin bitcoin-logo"></i>
-                <h3>Monedero Bitcoin Demo</h3>
-            </div>
-            
-            <div class="bitcoin-wallet">
-                <div class="wallet-address" id="wallet-address">
-                    bc1q9z4f8j4f8j4f8j4f8j4f8j4f8j4f8j4f8j4f8j
-                </div>
-                <div class="wallet-balance">
-                    <i class="fab fa-bitcoin"></i>
-                    <span id="btc-balance">0.00250000</span>
-                </div>
-                <p>Este monedero virtual es solo para demostración. No contiene Bitcoin real.</p>
-            </div>
-            
-            <div class="bitcoin-provably">
-                <h4>Tecnología Provably Fair</h4>
-                <p>En casinos Bitcoin reales, puedes verificar la justicia de cada juego usando criptografía:</p>
-                
-                <div class="verification-code">
-                    <label>Semilla del servidor (Hash):</label>
-                    <input type="text" class="verification-input" value="a3f8b1c9d2e7f6a5c4b3d8e9f0a1b2c3" readonly>
-                </div>
-                
-                <div class="verification-code">
-                    <label>Tu semilla:</label>
-                    <input type="text" class="verification-input" value="4d5e6f7a8b9c0d1e" readonly>
-                </div>
-                
-                <div class="verification-code">
-                    <label>Resultado calculado:</label>
-                    <input type="text" class="verification-input" value="32 (negro)" readonly>
-                </div>
-                
-                <button class="bitcoin-btn">
-                    <i class="fas fa-check-circle"></i> Verificar Juego
-                </button>
-                
-                <p class="demo-note">
-                    <i class="fas fa-exclamation-triangle"></i> Esta es solo una demostración de la tecnología. 
-                    En un casino Bitcoin real, podrías verificar cada resultado usando tu cliente.
-                </p>
+    
+    <!-- Providers Section -->
+    <section class="py-12 bg-black bg-opacity-20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center items-center flex-wrap gap-x-8 md:gap-x-12 gap-y-4">
+                <img src="https://placehold.co/150x50/ffffff/000000?text=Pragmatic+Play" alt="Pragmatic Play" class="h-8 md:h-10 provider-logo">
+                <img src="https://placehold.co/150x50/ffffff/000000?text=Evolution" alt="Evolution Gaming" class="h-8 md:h-10 provider-logo">
+                <img src="https://placehold.co/150x50/ffffff/000000?text=NetEnt" alt="NetEnt" class="h-8 md:h-10 provider-logo">
+                <img src="https://placehold.co/150x50/ffffff/000000?text=Play'n+GO" alt="Play'n GO" class="h-8 md:h-10 provider-logo">
+                <img src="https://placehold.co/150x50/ffffff/000000?text=Nolimit+City" alt="Nolimit City" class="h-8 md:h-10 provider-logo">
             </div>
         </div>
     </section>
 
-    <!-- Sección de juegos -->
-    <section class="features">
-        <div class="section-title">
-            <h2 id="games">Juegos Gratuitos con Tema Bitcoin</h2>
-            <p>Prueba nuestras versiones de demostración completamente funcionales</p>
-        </div>
-        
-        <div class="demo-note">
-            <i class="fas fa-info-circle"></i> 
-            <strong>ATENCIÓN:</strong> Estos juegos son solo para demostración y entretenimiento. 
-            No aceptan Bitcoin real ni ninguna otra moneda real. 
-            Los créditos mostrados son virtuales y no tienen valor monetario.
-        </div>
-        
-        <div class="games-container">
-            <!-- Tragaperras con tema Bitcoin -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3>Tragaperras Bitcoin</h3>
-                    <p>Gira los rodillos y gana premios virtuales</p>
-                </div>
-                <div class="game-content">
-                    <div class="slot-machine">
-                        <div class="slot" id="slot1">₿</div>
-                        <div class="slot" id="slot2">★</div>
-                        <div class="slot" id="slot3">$</div>
-                    </div>
-                    
-                    <div class="game-info">
-                        <p>Créditos: <span id="credits">100</span></p>
-                        <p>Premio: <span id="prize">0</span></p>
-                    </div>
-                    
-                    <div class="game-controls">
-                        <button class="game-btn" id="spin-btn">
-                            <i class="fas fa-redo"></i> Girar
-                        </button>
-                        <button class="game-btn" id="reset-btn">
-                            <i class="fas fa-sync"></i> Reiniciar
-                        </button>
-                    </div>
+    <!-- Games Section -->
+    <section id="games" class="py-20">
+        <div class="container mx-auto px-4">
+            <!-- Popular Slots -->
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold font-rajdhani uppercase mb-6">Tragamonedas <span class="text-glow-cyan">Populares</span></h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/FFFF00?text=Gates+of+Olympus" class="w-full h-full object-cover"><div class="overlay"></div></div>
+                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/FF0000?text=Sweet+Bonanza" class="w-full h-full object-cover"><div class="overlay"></div></div>
+                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/00FFFF?text=Sugar+Rush" class="w-full h-full object-cover"><div class="overlay"></div></div>
+                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/00FF00?text=Book+of+Dead" class="w-full h-full object-cover"><div class="overlay"></div></div>
+                    <div class="game-card rounded-2xl"><img src="https://placehold.co/400x600/1A1A2E/FFA500?text=The+Dog+House" class="w-full h-full object-cover"><div class="overlay"></div></div>
                 </div>
             </div>
-            
-            <!-- Ruleta con tema Bitcoin -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3>Ruleta Bitcoin</h3>
-                    <p>Adivina dónde caerá la bola</p>
-                </div>
-                <div class="game-content">
-                    <div class="roulette-container">
-                        <div class="roulette-wheel" id="roulette-wheel">
-                            <div class="roulette-pointer"></div>
-                            <div class="roulette-number" style="transform: rotate(0deg) translate(100px) rotate(0deg);">₿</div>
-                            <div class="roulette-number" style="transform: rotate(30deg) translate(100px) rotate(-30deg);">32</div>
-                            <div class="roulette-number" style="transform: rotate(60deg) translate(100px) rotate(-60deg);">15</div>
-                            <div class="roulette-number" style="transform: rotate(90deg) translate(100px) rotate(-90deg);">19</div>
-                            <div class="roulette-number" style="transform: rotate(120deg) translate(100px) rotate(-120deg);">4</div>
-                            <div class="roulette-number" style="transform: rotate(150deg) translate(100px) rotate(-150deg);">21</div>
-                            <div class="roulette-number" style="transform: rotate(180deg) translate(100px) rotate(-180deg);">2</div>
-                            <div class="roulette-number" style="transform: rotate(210deg) translate(100px) rotate(-210deg);">25</div>
-                            <div class="roulette-number" style="transform: rotate(240deg) translate(100px) rotate(-240deg);">17</div>
-                            <div class="roulette-number" style="transform: rotate(270deg) translate(100px) rotate(-270deg);">34</div>
-                            <div class="roulette-number" style="transform: rotate(300deg) translate(100px) rotate(-300deg);">6</div>
-                            <div class="roulette-number" style="transform: rotate(330deg) translate(100px) rotate(-330deg);">27</div>
+
+            <!-- Live Casino -->
+            <div id="live-casino" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold font-rajdhani uppercase mb-6">Casino <span class="text-glow-purple">en Vivo</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="game-card rounded-2xl">
+                        <img src="https://placehold.co/600x400/1A1A2E/C200FF?text=Lightning+Roulette" alt="Ruleta en Vivo" class="absolute inset-0 w-full h-full object-cover z-0">
+                        <div class="overlay"></div>
+                        <div class="relative z-10 flex flex-col justify-end h-64 p-6">
+                            <h3 class="text-3xl font-bold">Lightning Roulette</h3>
+                            <p class="text-purple-300">Siente el poder del rayo con multiplicadores de hasta 500x.</p>
                         </div>
-                        
-                        <div class="game-controls">
-                            <button class="game-btn" id="bet-red">Rojo</button>
-                            <button class="game-btn" id="bet-black">Negro</button>
-                            <button class="game-btn" id="bet-green">Bitcoin</button>
+                    </div>
+                    <div class="game-card rounded-2xl">
+                        <img src="https://placehold.co/600x400/1A1A2E/00FFFF?text=Crazy+Time" alt="Game Show en Vivo" class="absolute inset-0 w-full h-full object-cover z-0">
+                        <div class="overlay"></div>
+                        <div class="relative z-10 flex flex-col justify-end h-64 p-6">
+                            <h3 class="text-3xl font-bold">Crazy Time</h3>
+                            <p class="text-cyan-300">El game show más loco con 4 rondas de bonus.</p>
                         </div>
-                        
-                        <div class="game-info">
-                            <p>Saldo: <span id="balance">100</span> créditos</p>
-                            <p id="roulette-result">Haz tu apuesta</p>
+                    </div>
+                    <div class="game-card rounded-2xl">
+                        <img src="https://placehold.co/600x400/1A1A2E/FFFFFF?text=VIP+Blackjack" alt="Blackjack en Vivo" class="absolute inset-0 w-full h-full object-cover z-0">
+                        <div class="overlay"></div>
+                        <div class="relative z-10 flex flex-col justify-end h-64 p-6">
+                            <h3 class="text-3xl font-bold">VIP Blackjack</h3>
+                            <p class="text-gray-300">Mesas exclusivas para una experiencia premium.</p>
                         </div>
                     </div>
                 </div>
@@ -344,218 +209,71 @@
         </div>
     </section>
 
-    <!-- Sección de afiliados -->
-    <section class="affiliate-section">
-        <div class="section-title">
-            <h2>Casinos Bitcoin Reales</h2>
-            <p>Si quieres jugar con Bitcoin real, estos son casinos regulados que aceptan criptomonedas</p>
-        </div>
-        
-        <div class="affiliate-logos">
-            <div class="affiliate-logo">Stake.com</div>
-            <div class="affiliate-logo">BitStarz</div>
-            <div class="affiliate-logo">CloudBet</div>
-            <div class="affiliate-logo">mBit Casino</div>
-        </div>
-        
-        <button class="bitcoin-btn">
-            <i class="fas fa-external-link-alt"></i> Ver casinos reales
-        </button>
-        
-        <div class="demo-note">
-            <i class="fas fa-exclamation-circle"></i> 
-            Estos casinos requieren apuestas reales y solo están disponibles para mayores de 18 años. 
-            Juega responsablemente.
-        </div>
-    </section>
+    <!-- Promotions / VIP Section -->
+    <section id="promotions" class="py-20 bg-black bg-opacity-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold font-rajdhani uppercase">Club <span class="text-glow-purple">VIP Exclusivo</span></h2>
+                <p class="text-gray-400 mt-2">Recompensamos tu lealtad con beneficios únicos.</p>
+            </div>
 
-    <!-- Juego Responsable -->
-    <section class="responsible-gaming">
-        <div class="responsible-content">
-            <h2>Juego Responsable</h2>
-            <p>Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Los casinos Bitcoin reales requieren licencias y están sujetos a regulaciones específicas en cada jurisdicción.</p>
-            
-            <div class="tips">
-                <div class="tip">
-                    <i class="fas fa-info-circle"></i>
-                    <h4>Demo Sin Valor Real</h4>
-                    <p>Estos juegos son demostraciones sin valor monetario</p>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-gray-900 bg-opacity-50 p-8 rounded-xl border border-gray-800">
+                    <i class="fas fa-star text-purple-400 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Bonos Semanales</h3>
+                    <p class="text-gray-400">Recibe bonos de recarga y giros gratis cada semana para potenciar tu juego.</p>
                 </div>
-                <div class="tip">
-                    <i class="fab fa-bitcoin"></i>
-                    <h4>Tecnología Blockchain</h4>
-                    <p>Los casinos Bitcoin reales usan tecnología "provably fair"</p>
+                <div class="bg-gray-900 bg-opacity-50 p-8 rounded-xl border-2 border-purple-500 shadow-lg shadow-purple-500/20">
+                    <i class="fas fa-crown text-purple-400 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Manager Personal</h3>
+                    <p class="text-gray-400">Un agente VIP dedicado para atender todas tus necesidades y consultas 24/7.</p>
                 </div>
-                <div class="tip">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h4>Requiere Licencia</h4>
-                    <p>Operar un casino real requiere licencia y cumplimiento legal</p>
+                <div class="bg-gray-900 bg-opacity-50 p-8 rounded-xl border border-gray-800">
+                    <i class="fas fa-gift text-purple-400 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Retiros Rápidos</h3>
+                    <p class="text-gray-400">Disfruta de límites de retiro más altos y procesamiento prioritario en tus ganancias.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Bitcoin Casino Demo</h3>
-                <p>Plataforma de demostración tecnológica. No se realizan transacciones reales.</p>
-                <div class="legal-logos">
-                    <div class="legal-logo">
-                        <i class="fab fa-bitcoin"></i>
-                    </div>
-                    <div class="legal-logo">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <div class="legal-logo">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
+    <footer class="bg-black bg-opacity-40 border-t border-gray-800 pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-3xl font-black tracking-widest font-rajdhani uppercase">
+                        VARGAS<span class="text-purple-400">CASINO</span>
+                    </h3>
+                    <p class="mt-4 text-gray-400 max-w-md">
+                        Vargas Casino es tu destino para el entretenimiento de primer nivel. Ofrecemos una plataforma segura y justa con miles de juegos de los mejores proveedores.
+                    </p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Navegación</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#games" class="text-gray-400 hover:text-purple-400">Tragamonedas</a></li>
+                        <li><a href="#live-casino" class="text-gray-400 hover:text-purple-400">Casino en Vivo</a></li>
+                        <li><a href="#promotions" class="text-gray-400 hover:text-purple-400">Promociones</a></li>
+                    </ul>
+                </div>
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Términos de Uso</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Política de Privacidad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Juego Responsable</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Enlaces Rápidos</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#games">Juegos Gratis</a></li>
-                    <li><a href="#bitcoin">Tecnología Bitcoin</a></li>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                </ul>
+            <div class="mt-12 border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Vargas Casino. Todos los derechos reservados. El juego puede ser adictivo. Juega de forma responsable. Prohibido para menores de 18 años.</p>
             </div>
-            <div class="footer-section">
-                <h3>Información Legal</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Términos de Uso</a></li>
-                    <li><a href="#">Privacidad</a></li>
-                    <li><a href="#">Juego Responsable</a></li>
-                    <li><a href="#">Exención de Responsabilidad</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>© 2023 Bitcoin Casino Demo. Todos los derechos reservados. Estos juegos son únicamente para entretenimiento. No involucran apuestas reales ni la posibilidad de ganar dinero real. Prohibida la participación de menores de 18 años.</p>
         </div>
     </footer>
-
-    <!-- Restricción de edad -->
-    <div class="age-restriction">
-        <i class="fas fa-exclamation-triangle"></i> +18
-    </div>
-
-    <script>
-        // Juego de Tragaperras
-        const symbols = ['₿', '★', '$', '7', '♦', '♥'];
-        let credits = 100;
-        let prize = 0;
-        
-        document.getElementById('spin-btn').addEventListener('click', () => {
-            if (credits <= 0) {
-                alert("No tienes créditos suficientes. Reinicia el juego.");
-                return;
-            }
-            
-            credits -= 5;
-            prize = 0;
-            
-            // Girar los rodillos
-            for (let i = 1; i <= 3; i++) {
-                const randomIndex = Math.floor(Math.random() * symbols.length);
-                document.getElementById(`slot${i}`).textContent = symbols[randomIndex];
-            }
-            
-            // Comprobar resultados
-            const slot1 = document.getElementById('slot1').textContent;
-            const slot2 = document.getElementById('slot2').textContent;
-            const slot3 = document.getElementById('slot3').textContent;
-            
-            if (slot1 === '₿' && slot2 === '₿' && slot3 === '₿') {
-                prize = 100;
-            } else if (slot1 === slot2 && slot2 === slot3) {
-                prize = 50;
-            } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
-                prize = 10;
-            }
-            
-            credits += prize;
-            
-            // Actualizar UI
-            document.getElementById('credits').textContent = credits;
-            document.getElementById('prize').textContent = prize;
-        });
-        
-        document.getElementById('reset-btn').addEventListener('click', () => {
-            credits = 100;
-            prize = 0;
-            document.getElementById('credits').textContent = credits;
-            document.getElementById('prize').textContent = prize;
-            
-            for (let i = 1; i <= 3; i++) {
-                document.getElementById(`slot${i}`).textContent = symbols[0];
-            }
-        });
-        
-        // Ruleta
-        let balance = 100;
-        
-        document.getElementById('bet-red').addEventListener('click', () => playRoulette('red'));
-        document.getElementById('bet-black').addEventListener('click', () => playRoulette('black'));
-        document.getElementById('bet-green').addEventListener('click', () => playRoulette('green'));
-        
-        function playRoulette(bet) {
-            if (balance <= 0) {
-                alert("No tienes suficiente saldo. Recarga la página para reiniciar.");
-                return;
-            }
-            
-            balance -= 10;
-            
-            // Girar la ruleta
-            const wheel = document.getElementById('roulette-wheel');
-            const spins = 5 + Math.floor(Math.random() * 5);
-            const degrees = 1080 + Math.floor(Math.random() * 360);
-            
-            wheel.style.transition = 'transform 4s cubic-bezier(0.2, 0.8, 0.2, 1)';
-            wheel.style.transform = `rotate(${degrees}deg)`;
-            
-            // Resultado después de 4 segundos
-            setTimeout(() => {
-                const winningNumber = Math.floor(Math.random() * 37);
-                let winningColor;
-                
-                if (winningNumber === 0) {
-                    winningColor = 'green';
-                } else if (winningNumber % 2 === 0) {
-                    winningColor = 'black';
-                } else {
-                    winningColor = 'red';
-                }
-                
-                let resultText = `Número: ${winningNumber} - ${winningColor}`;
-                
-                if (winningColor === bet) {
-                    const winAmount = bet === 'green' ? 150 : 20;
-                    balance += winAmount;
-                    resultText += ` - ¡Ganas ${winAmount} créditos!`;
-                } else {
-                    resultText += " - Pierdes esta ronda";
-                }
-                
-                document.getElementById('roulette-result').textContent = resultText;
-                document.getElementById('balance').textContent = balance;
-            }, 4000);
-        }
-        
-        // Simular cambio de saldo Bitcoin
-        setInterval(() => {
-            const balanceElement = document.getElementById('btc-balance');
-            let currentBalance = parseFloat(balanceElement.textContent);
-            
-            // Pequeña variación aleatoria para simular cambio de valor
-            const change = (Math.random() - 0.5) * 0.0001;
-            const newBalance = Math.max(0.001, currentBalance + change);
-            
-            balanceElement.textContent = newBalance.toFixed(8);
-        }, 5000);
-    </script>
+    
 </body>
 </html>
