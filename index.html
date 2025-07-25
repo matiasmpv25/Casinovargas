@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vargas Casino | La Experiencia de Juego Definitiva</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tone.js for game sound effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
 
     <style>
         /* --- General Page Styles --- */
@@ -38,64 +46,105 @@
 
         /* --- Game Modal Styles --- */
         #game-modal { transition: opacity 0.3s ease-in-out; }
-        #game-modal-content { transform: scale(0.95); transition: transform 0.3s ease-in-out; }
+        #game-modal-content { 
+            transform: scale(0.95); 
+            transition: transform 0.3s ease-in-out;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
         #game-modal:not(.hidden) #game-modal-content { transform: scale(1); }
 
-        /* --- Sweet Bonanza Clone Styles --- */
-        .bonanza-container {
-            background: linear-gradient(to bottom, #ff7e5f, #feb47b);
-            padding: 1rem; border-radius: 20px; border: 8px solid #d4a373;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 500px;
-            font-family: 'Poppins', sans-serif; font-weight: 700;
+        /* --- Sweet Bonanza Pro Game Styles (Integrated) --- */
+        .sweet-bonanza-pro-container {
+            font-family: 'Poppins', sans-serif;
+            /* Professional background for the game */
+            background-image: radial-gradient(circle at top left, rgba(255, 87, 128, 0.8) 0%, transparent 40%), 
+                              radial-gradient(circle at bottom right, rgba(88, 87, 255, 0.8) 0%, transparent 50%),
+                              linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            border-radius: 1.5rem; /* 24px */
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            padding: 1rem;
         }
-        .bonanza-header {
-            text-align: center; font-size: 2.5rem; font-weight: 900; color: white;
-            text-shadow: 2px 2px 0 #c71585, 4px 4px 0 #8a2be2; margin-bottom: 1rem;
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 8px;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
-        .bonanza-grid {
-            display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
-            background-color: rgba(0,0,0,0.1); padding: 8px; border-radius: 10px;
-            border: 4px solid rgba(255,255,255,0.3); margin-bottom: 1rem;
-            overflow: hidden; /* Important for the reel effect */
+
+        .symbol {
+            width: 100%;
+            padding-bottom: 100%; /* Maintain aspect ratio 1:1 */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        .bonanza-reel {
-            display: flex; flex-direction: column;
-            transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+        
+        .symbol-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(2rem, 6vw, 3rem); /* Responsive font size */
+            animation: fall 0.5s ease-out forwards;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        .bonanza-symbol {
-            width: 100%; aspect-ratio: 1/1; font-size: clamp(1.5rem, 6vw, 2.5rem);
-            display: flex; justify-content: center; align-items: center;
-            border-radius: 8px; transition: transform 0.3s ease, opacity 0.3s ease;
-            transform-origin: center center; flex-shrink: 0;
+
+        @keyframes fall {
+            from { transform: translateY(-150%) scale(0.5); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
-        .bonanza-symbol.pop { animation: pop 0.3s ease-out forwards; }
-        @keyframes pop {
-            0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(0); opacity: 0; }
+        
+        .win-animation { animation: win-pulse 0.6s infinite; }
+        
+        @keyframes win-pulse {
+            0%, 100% { transform: scale(1); background-color: rgba(255, 215, 0, 0.5); }
+            50% { transform: scale(1.15); background-color: rgba(255, 215, 0, 0.8); }
         }
-        .bonanza-symbol.new-fall { animation: new-fall 0.5s ease-out forwards; }
-        @keyframes new-fall {
-            0% { transform: translateY(-200%); } 100% { transform: translateY(0); }
+        
+        .disappear-animation { animation: disappear 0.3s ease-out forwards; }
+        
+        @keyframes disappear {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(0); opacity: 0; }
         }
-        .bonanza-controls {
-            display: grid; grid-template-columns: 1fr 1.5fr 1fr;
-            align-items: center; gap: 1rem;
+
+        .spin-button {
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .bonanza-spin-btn {
-            background-color: #34d399; border: 4px solid white; border-radius: 50%;
-            width: 80px; height: 80px; margin: 0 auto; display: flex; justify-content: center; align-items: center;
-            color: white; font-size: 2.5rem; cursor: pointer; transition: all 0.2s ease;
-            box-shadow: 0 5px 0 #15803d;
+
+        .spin-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 129, 0.5);
         }
-        .bonanza-spin-btn:hover:not(:disabled) { background-color: #6ee7b7; }
-        .bonanza-spin-btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #15803d; }
-        .bonanza-spin-btn:disabled { background-color: #9ca3af; box-shadow: 0 5px 0 #4b5563; cursor: not-allowed; }
-        .bonanza-bet-display { text-align: center; color: white; }
-        .bonanza-bet-display .label { font-size: 0.8rem; opacity: 0.8; }
-        .bonanza-bet-display .value { font-size: 1.5rem; }
-        .bonanza-bet-controls button {
-            background: #8a2be2; color: white; border: none;
-            width: 40px; height: 40px; border-radius: 50%;
-            font-size: 1.5rem; cursor: pointer;
+        
+        .spin-button:active:not(:disabled) {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .win-message { animation: fadeInOut 4s ease-in-out forwards; }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateY(20px); }
+            10%, 90% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -112,9 +161,10 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold font-rajdhani uppercase mb-6">Nuestros <span class="text-glow-cyan">Juegos Exclusivos</span></h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <!-- Game Card -->
                 <div class="game-card rounded-2xl flex flex-col">
                     <div class="relative h-64">
-                       <img src="https://placehold.co/400x600/ff7e5f/ffffff?text=Bonanza+de+Vargas" class="w-full h-full object-cover">
+                       <img src="https://placehold.co/400x600/ff7e5f/ffffff?text=Bonanza+de+Vargas" alt="Bonanza de Vargas Game" class="w-full h-full object-cover">
                        <div class="overlay"></div>
                     </div>
                     <div class="p-4 flex flex-col flex-grow z-10 bg-[#191932]">
@@ -123,24 +173,55 @@
                         <button id="launch-game-btn" class="mt-4 w-full btn-primary text-white font-bold py-2 rounded-lg">Jugar Demo</button>
                     </div>
                 </div>
+                 <!-- Add other game cards here -->
             </div>
         </div>
     </section>
     
     <!-- GAME MODAL (Initially Hidden) -->
     <div id="game-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4 opacity-0">
-        <div id="game-modal-content" class="relative w-full">
-            <button id="close-modal-btn" class="absolute -top-2 -right-2 w-10 h-10 bg-white text-black rounded-full text-2xl font-bold z-10">&times;</button>
-            <div class="bonanza-container">
-                <h1 class="bonanza-header">Bonanza de Vargas</h1>
-                <div id="bonanza-grid" class="bonanza-grid"></div>
-                <div class="bonanza-controls">
-                    <div class="bonanza-bet-display"><div class="label">CRÉDITO</div><div id="balance-display" class="value">1000.00</div></div>
-                    <button id="spin-btn" class="bonanza-spin-btn"><i class="fas fa-sync-alt"></i></button>
-                    <div class="bonanza-bet-display"><div class="label">APUESTA</div><div class="flex items-center justify-center gap-2"><button id="bet-down-btn" class="bonanza-bet-controls">-</button><span id="bet-display" class="value">2.00</span><button id="bet-up-btn" class="bonanza-bet-controls">+</button></div></div>
+        <div id="game-modal-content" class="relative w-full max-w-4xl">
+            <button id="close-modal-btn" class="absolute -top-3 -right-3 w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-full text-2xl font-bold z-20 flex items-center justify-center shadow-lg">&times;</button>
+            
+            <!-- Sweet Bonanza Pro Game Content is injected here -->
+            <main class="sweet-bonanza-pro-container w-full mx-auto flex flex-col items-center">
+                <header class="text-center mb-4">
+                    <h1 class="text-4xl md:text-5xl font-extrabold" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-yellow-200">Sweet</span> 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-blue-300">Bonanza Pro</span>
+                    </h1>
+                    <p class="text-gray-200 mt-1">¡Gira para ganar grandes premios!</p>
+                </header>
+        
+                <div id="game-grid" class="game-grid w-full mb-4">
+                    <!-- Symbols will be generated by JavaScript here -->
                 </div>
-                <div id="win-display" class="text-center text-2xl font-black text-white mt-4 text-glow-purple"></div>
-            </div>
+        
+                <div id="win-message-container" class="h-12 text-center">
+                    <!-- Win messages appear here -->
+                </div>
+        
+                <div class="w-full bg-black/30 backdrop-blur-sm p-4 rounded-2xl border border-white/20 flex flex-col md:flex-row items-center justify-around gap-4">
+                    <div class="text-center">
+                        <span class="text-gray-300 text-sm">CRÉDITO</span>
+                        <p id="balance" class="text-2xl font-bold text-green-400">$1000.00</p>
+                    </div>
+        
+                    <div class="flex items-center gap-3">
+                        <button id="decrease-bet" class="bg-gray-700/50 hover:bg-gray-600/50 rounded-full w-10 h-10 text-xl font-bold">-</button>
+                        <div class="text-center">
+                            <span class="text-gray-300 text-sm">APUESTA</span>
+                            <p id="bet-amount" class="text-2xl font-bold">$10.00</p>
+                        </div>
+                        <button id="increase-bet" class="bg-gray-700/50 hover:bg-gray-600/50 rounded-full w-10 h-10 text-xl font-bold">+</button>
+                    </div>
+        
+                    <button id="spin-button" class="spin-button bg-gradient-to-br from-pink-500 to-yellow-500 text-white font-bold py-4 px-10 rounded-full text-2xl shadow-lg">
+                        GIRAR
+                    </button>
+                </div>
+            </main>
+            <!-- End of Sweet Bonanza Pro Content -->
         </div>
     </div>
 
@@ -150,215 +231,325 @@
         const gameModal = document.getElementById('game-modal');
         const launchGameBtn = document.getElementById('launch-game-btn');
         const closeModalBtn = document.getElementById('close-modal-btn');
-        launchGameBtn.addEventListener('click', () => { gameModal.classList.remove('hidden'); setTimeout(() => gameModal.classList.remove('opacity-0'), 10); });
-        closeModalBtn.addEventListener('click', () => { gameModal.classList.add('opacity-0'); setTimeout(() => gameModal.classList.add('hidden'), 300); });
-
-        // --- BONANZA GAME LOGIC ---
-        const GRID_ROWS = 5;
-        const GRID_COLS = 6;
-        const WIN_THRESHOLD = 8;
-        const WIN_PROBABILITY = 0.4;
-
-        const SYMBOLS = ['❤️', '💜', '💚', '💙', '🍎', '🍇', '🍉', '🍌'];
-        const PAYOUTS = { '❤️': 10, '💜': 5, '💚': 4, '💙': 3, '🍎': 2, '🍇': 1.5, '🍉': 1, '🍌': 0.8 };
-
-        const gridContainer = document.getElementById('bonanza-grid');
-        const spinBtn = document.getElementById('spin-btn');
-        const balanceDisplay = document.getElementById('balance-display');
-        const betDisplay = document.getElementById('bet-display');
-        const winDisplay = document.getElementById('win-display');
-        const betUpBtn = document.getElementById('bet-up-btn');
-        const betDownBtn = document.getElementById('bet-down-btn');
-
-        let balance = 1000;
-        const betAmounts = [2, 5, 10, 20];
-        let currentBetIndex = 0;
-        let isSpinning = false;
-        let reels = [];
-
-        const updateDisplays = () => {
-            balanceDisplay.textContent = balance.toFixed(2);
-            betDisplay.textContent = betAmounts[currentBetIndex].toFixed(2);
-        };
-
-        const changeBet = (direction) => {
-            if (isSpinning) return;
-            currentBetIndex = Math.max(0, Math.min(betAmounts.length - 1, currentBetIndex + direction));
-            updateDisplays();
-        };
-
-        betUpBtn.addEventListener('click', () => changeBet(1));
-        betDownBtn.addEventListener('click', () => changeBet(-1));
-        spinBtn.addEventListener('click', () => spin());
-
-        const createGrid = () => {
-            gridContainer.innerHTML = '';
-            reels = [];
-            for (let i = 0; i < GRID_COLS; i++) {
-                const reelElement = document.createElement('div');
-                reelElement.classList.add('bonanza-reel');
-                gridContainer.appendChild(reelElement);
-                reels.push(reelElement);
-            }
-            // Populate with initial static symbols
-            const initialSymbols = generateInitialGrid(false);
-            reels.forEach((reel, colIndex) => {
-                for(let rowIndex=0; rowIndex < GRID_ROWS; rowIndex++) {
-                    const symbol = initialSymbols[rowIndex * GRID_COLS + colIndex];
-                    const cell = document.createElement('div');
-                    cell.classList.add('bonanza-symbol');
-                    cell.innerHTML = symbol;
-                    reel.appendChild(cell);
-                }
-            });
-        };
         
-        const spin = async () => {
-            if (isSpinning) return;
-            const bet = betAmounts[currentBetIndex];
-            if (balance < bet) { alert("Crédito insuficiente."); return; }
+        launchGameBtn.addEventListener('click', () => { 
+            gameModal.classList.remove('hidden'); 
+            setTimeout(() => gameModal.classList.remove('opacity-0'), 10); 
+        });
+        
+        closeModalBtn.addEventListener('click', () => { 
+            gameModal.classList.add('opacity-0'); 
+            setTimeout(() => gameModal.classList.add('hidden'), 300); 
+        });
 
-            isSpinning = true;
-            spinBtn.disabled = true;
-            winDisplay.textContent = '';
-            balance -= bet;
-            updateDisplays();
-
-            const shouldWin = Math.random() < WIN_PROBABILITY;
-            const finalGridSymbols = generateInitialGrid(shouldWin);
-            
-            const spinPromises = reels.map((reel, colIndex) => {
-                return new Promise(resolve => {
-                    const symbolHeight = reel.querySelector('.bonanza-symbol').clientHeight;
-                    const spinCount = 20; // Number of symbols to "roll"
-                    const totalSpinHeight = (spinCount + GRID_ROWS) * symbolHeight;
-                    
-                    reel.style.transition = 'none';
-                    reel.style.transform = 'translateY(0)';
-                    
-                    // Generate a long strip of symbols for animation
-                    let reelStripHtml = '';
-                    for(let i=0; i < spinCount; i++) {
-                        reelStripHtml += `<div class="bonanza-symbol">${SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]}</div>`;
-                    }
-                    // Add final symbols at the end of the strip
-                    for(let i=0; i < GRID_ROWS; i++) {
-                        reelStripHtml += `<div class="bonanza-symbol">${finalGridSymbols[i * GRID_COLS + colIndex]}</div>`;
-                    }
-                    reel.innerHTML = reelStripHtml;
-
-                    // Animate
-                    setTimeout(() => {
-                        reel.style.transition = `transform ${2 + colIndex * 0.2}s cubic-bezier(0.25, 1, 0.5, 1)`;
-                        reel.style.transform = `translateY(-${spinCount * symbolHeight}px)`;
-                    }, 100);
-
-                    setTimeout(resolve, 2000 + colIndex * 200);
-                });
-            });
-
-            await Promise.all(spinPromises);
-            
-            // Cleanup reels to only show final symbols
-            reels.forEach((reel, colIndex) => {
-                const finalSymbolsHtml = Array.from(reel.children).slice(-GRID_ROWS).map(s => s.outerHTML).join('');
-                reel.style.transition = 'none';
-                reel.style.transform = 'translateY(0)';
-                reel.innerHTML = finalSymbolsHtml;
-            });
-            
-            await handleTumbles();
+        // --- SWEET BONANZA PRO GAME LOGIC (INTEGRATED) ---
+        // --- GAME CONFIGURATION ---
+        const GRID_WIDTH = 6;
+        const GRID_HEIGHT = 5;
+        const TOTAL_CELLS = GRID_WIDTH * GRID_HEIGHT;
+        const SYMBOLS = ['🍇', '🍉', '🍎', '🍌', '💎', '❤️', '⭐'];
+        const PAY_TABLE = {
+            '🍇': { 8: 5, 9: 10, 10: 15, 11: 20, 12: 25 },
+            '🍉': { 8: 6, 9: 12, 10: 18, 11: 24, 12: 30 },
+            '🍎': { 8: 7, 9: 14, 10: 21, 11: 28, 12: 35 },
+            '🍌': { 8: 8, 9: 16, 10: 24, 11: 32, 12: 40 },
+            '💎': { 8: 10, 9: 20, 10: 30, 11: 40, 12: 50 },
+            '❤️': { 8: 15, 9: 30, 10: 45, 11: 60, 12: 75 },
+            '⭐': { 8: 20, 9: 40, 10: 60, 11: 80, 12: 100 },
         };
+        const MIN_WIN_COUNT = 8; // Minimum number of same symbols for a win
+        const WIN_PROBABILITY = 0.4; // 40% chance to win
 
-        const generateInitialGrid = (forceWin) => {
-            let symbols = Array.from({ length: GRID_ROWS * GRID_COLS }, () => SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]);
-            let counts = {};
-            symbols.forEach(s => counts[s] = (counts[s] || 0) + 1);
+        // --- DOM ELEMENTS ---
+        const grid = document.getElementById('game-grid');
+        const spinButton = document.getElementById('spin-button');
+        const balanceEl = document.getElementById('balance');
+        const betAmountEl = document.getElementById('bet-amount');
+        const increaseBetButton = document.getElementById('increase-bet');
+        const decreaseBetButton = document.getElementById('decrease-bet');
+        const winMessageContainer = document.getElementById('win-message-container');
+
+        // --- GAME STATE ---
+        let balance = 1000;
+        let betAmount = 10;
+        let isSpinning = false;
+        let gridSymbols = [];
+
+        // --- SOUND EFFECTS ---
+        let synth, spinSound, winSound, tumbleSound;
+        // Initialize sounds on first user interaction to comply with browser policies
+        function initSounds() {
+            if (Tone.context.state !== 'running') {
+                Tone.start().catch(e => console.error("Tone.js could not start: ", e));
+            }
+            // Ensure sounds are only created once
+            if (!synth) {
+                synth = new Tone.PolySynth(Tone.Synth).toDestination();
+                spinSound = new Tone.NoiseSynth({
+                    noise: { type: 'white' },
+                    envelope: { attack: 0.005, decay: 0.2, sustain: 0 }
+                }).toDestination();
+                winSound = new Tone.Synth({
+                    oscillator: { type: 'triangle' },
+                    envelope: { attack: 0.01, decay: 0.2, sustain: 0.1, release: 0.2 }
+                }).toDestination();
+                tumbleSound = new Tone.MembraneSynth().toDestination();
+            }
+        }
+        // Attach sound initialization to the first spin
+        spinButton.addEventListener('click', initSounds, { once: true });
+
+
+        // --- INITIALIZATION ---
+        function initializeGrid() {
+            grid.innerHTML = '';
+            gridSymbols = [];
+            for (let i = 0; i < TOTAL_CELLS; i++) {
+                const symbolDiv = document.createElement('div');
+                symbolDiv.classList.add('symbol');
+                const symbolContent = document.createElement('div');
+                symbolContent.classList.add('symbol-content');
+                const randomSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                symbolContent.textContent = randomSymbol;
+                symbolContent.style.animation = 'none'; // No animation on initial load
+                symbolDiv.appendChild(symbolContent);
+                grid.appendChild(symbolDiv);
+                gridSymbols.push(randomSymbol);
+            }
+            updateUI();
+        }
+
+        function updateUI() {
+            balanceEl.textContent = `$${balance.toFixed(2)}`;
+            betAmountEl.textContent = `$${betAmount.toFixed(2)}`;
+        }
+
+        // --- BETTING LOGIC ---
+        increaseBetButton.addEventListener('click', () => {
+            if (isSpinning) return;
+            betAmount = Math.min(betAmount + 5, 100);
+            updateUI();
+        });
+
+        decreaseBetButton.addEventListener('click', () => {
+            if (isSpinning) return;
+            betAmount = Math.max(betAmount - 5, 5);
+            updateUI();
+        });
+
+        // --- SPIN LOGIC ---
+        spinButton.addEventListener('click', () => {
+            if (isSpinning || balance < betAmount) return;
+            startSpin();
+        });
+
+        async function startSpin() {
+            isSpinning = true;
+            spinButton.disabled = true;
+            spinButton.classList.add('opacity-50', 'cursor-not-allowed');
+            winMessageContainer.innerHTML = '';
+
+            balance -= betAmount;
+            updateUI();
+            if(spinSound) spinSound.triggerAttackRelease("8n");
+
+            const isWinningSpin = Math.random() < WIN_PROBABILITY;
+            
+            await populateGrid(isWinningSpin);
+            await processWins();
+
+            isSpinning = false;
+            spinButton.disabled = false;
+            spinButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        function getRandomSymbol() {
+            return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+        }
+
+        async function populateGrid(forceWin = false) {
+            gridSymbols = [];
+            let forcedSymbol = null;
+            let forcedCount = 0;
 
             if (forceWin) {
-                const winSymbol = SYMBOLS[Math.floor(Math.random() * 4)];
-                while ((counts[winSymbol] || 0) < WIN_THRESHOLD) {
-                    const randomIndex = Math.floor(Math.random() * symbols.length);
-                    const oldSymbol = symbols[randomIndex];
-                    if (oldSymbol !== winSymbol) {
-                        symbols[randomIndex] = winSymbol;
-                        counts[oldSymbol]--;
-                        counts[winSymbol] = (counts[winSymbol] || 0) + 1;
-                    }
-                }
-            } else { // Force loss
-                for (const symbol in counts) {
-                    while (counts[symbol] >= WIN_THRESHOLD) {
-                        const indexToReplace = symbols.findIndex(s => s === symbol);
-                        let newSymbol;
-                        do {
-                            newSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-                        } while (newSymbol === symbol);
-                        symbols[indexToReplace] = newSymbol;
-                        counts[symbol]--;
-                        counts[newSymbol] = (counts[newSymbol] || 0) + 1;
-                    }
+                forcedSymbol = getRandomSymbol();
+                const winCounts = Object.keys(PAY_TABLE[forcedSymbol]).map(Number);
+                forcedCount = winCounts[Math.floor(Math.random() * winCounts.length)];
+            }
+
+            let forcedPlaced = 0;
+            for (let i = 0; i < TOTAL_CELLS; i++) {
+                if (forceWin && forcedPlaced < forcedCount) {
+                    gridSymbols.push(forcedSymbol);
+                    forcedPlaced++;
+                } else {
+                    let symbol;
+                    do {
+                        symbol = getRandomSymbol();
+                    } while (symbol === forcedSymbol && forceWin);
+                    gridSymbols.push(symbol);
                 }
             }
-            return symbols;
-        };
+            
+            gridSymbols.sort(() => Math.random() - 0.5);
 
-        const handleTumbles = async () => {
+            const cells = grid.children;
+            for (let i = 0; i < TOTAL_CELLS; i++) {
+                const symbolContent = cells[i].querySelector('.symbol-content');
+                symbolContent.style.animation = 'none';
+                symbolContent.offsetHeight; // Trigger reflow
+                symbolContent.style.animation = `fall ${0.3 + (i * 0.02)}s ease-out forwards`;
+                symbolContent.textContent = gridSymbols[i];
+            }
+            await new Promise(resolve => setTimeout(resolve, 600)); // Wait for fall animation
+        }
+
+        // --- WINNING AND TUMBLING LOGIC ---
+        async function processWins() {
             let totalWinThisSpin = 0;
             while (true) {
-                const counts = {};
-                reels.forEach(reel => {
-                    Array.from(reel.children).forEach(cell => {
-                        counts[cell.innerHTML] = (counts[cell.innerHTML] || 0) + 1;
-                    });
-                });
+                const winInfo = findWins();
+                if (Object.keys(winInfo).length === 0) break;
 
-                const winningSymbols = Object.keys(counts).filter(s => counts[s] >= WIN_THRESHOLD);
-                if (winningSymbols.length === 0) {
-                    if (totalWinThisSpin > 0) balance += totalWinThisSpin;
-                    updateDisplays();
-                    isSpinning = false;
-                    spinBtn.disabled = false;
-                    return;
-                }
-
-                let winThisTumble = 0;
-                winningSymbols.forEach(symbol => {
-                    winThisTumble += PAYOUTS[symbol] * counts[symbol] * (betAmounts[currentBetIndex] / 10);
-                });
-                totalWinThisSpin += winThisTumble;
-                winDisplay.textContent = `GANANCIA: ${totalWinThisSpin.toFixed(2)}`;
-
-                reels.forEach(reel => {
-                    Array.from(reel.children).forEach(cell => {
-                        if (winningSymbols.includes(cell.innerHTML)) cell.classList.add('pop');
-                    });
-                });
-
-                await new Promise(resolve => setTimeout(resolve, 300));
-
-                reels.forEach(reel => {
-                    const remainingSymbols = Array.from(reel.children).filter(c => !c.classList.contains('pop'));
-                    reel.innerHTML = '';
-                    const newSymbolsCount = GRID_ROWS - remainingSymbols.length;
-                    for (let i = 0; i < newSymbolsCount; i++) {
-                        const cell = document.createElement('div');
-                        cell.classList.add('bonanza-symbol', 'new-fall');
-                        cell.innerHTML = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-                        reel.appendChild(cell);
+                let currentTumbleWin = 0;
+                for (const symbol in winInfo) {
+                    const count = winInfo[symbol].count;
+                    const payoutMultipliers = PAY_TABLE[symbol];
+                    const payoutTier = Object.keys(payoutMultipliers)
+                        .map(Number)
+                        .sort((a, b) => b - a)
+                        .find(tier => count >= tier);
+                    
+                    if (payoutTier) {
+                        currentTumbleWin += payoutMultipliers[payoutTier] * betAmount;
                     }
-                    remainingSymbols.forEach(cell => {
-                        cell.classList.remove('pop');
-                        reel.appendChild(cell);
-                    });
-                });
-
-                await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                if (currentTumbleWin > 0) {
+                    balance += currentTumbleWin;
+                    totalWinThisSpin += currentTumbleWin;
+                    
+                    if(winSound) winSound.triggerAttackRelease("C5", "8n", Tone.now() + 0.1);
+                    showWinMessage(`¡GANASTE $${currentTumbleWin.toFixed(2)}!`);
+                    updateUI();
+                    await animateWins(winInfo);
+                    await tumble();
+                } else {
+                    break;
+                }
             }
-        };
+            if(totalWinThisSpin > 0) {
+                 showWinMessage(`GANANCIA TOTAL: $${totalWinThisSpin.toFixed(2)}`, true);
+            }
+        }
+        
+        function findWins() {
+            const symbolCounts = {};
+            for (let i = 0; i < TOTAL_CELLS; i++) {
+                const symbol = gridSymbols[i];
+                if (!symbol) continue;
+                if (!symbolCounts[symbol]) {
+                    symbolCounts[symbol] = { count: 0, indices: [] };
+                }
+                symbolCounts[symbol].count++;
+                symbolCounts[symbol].indices.push(i);
+            }
 
-        createGrid();
-        updateDisplays();
+            const wins = {};
+            for (const symbol in symbolCounts) {
+                if (symbolCounts[symbol].count >= MIN_WIN_COUNT) {
+                    wins[symbol] = symbolCounts[symbol];
+                }
+            }
+            return wins;
+        }
+
+        function showWinMessage(message, isFinal = false) {
+            winMessageContainer.innerHTML = '';
+            const msgEl = document.createElement('div');
+            msgEl.textContent = message;
+            msgEl.className = `win-message text-2xl font-bold text-yellow-300`;
+            if(isFinal) {
+                msgEl.classList.add("text-3xl", "text-transparent", "bg-clip-text", "bg-gradient-to-r", "from-green-300", "to-blue-400");
+            }
+            winMessageContainer.appendChild(msgEl);
+        }
+
+        async function animateWins(winInfo) {
+            const cells = grid.children;
+            let winningIndices = [];
+            for (const symbol in winInfo) {
+                winningIndices = winningIndices.concat(winInfo[symbol].indices);
+            }
+
+            winningIndices.forEach(index => {
+                cells[index].querySelector('.symbol-content').classList.add('win-animation');
+            });
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            winningIndices.forEach(index => {
+                const content = cells[index].querySelector('.symbol-content');
+                content.classList.remove('win-animation');
+                content.classList.add('disappear-animation');
+            });
+            
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            winningIndices.forEach(index => {
+                gridSymbols[index] = null;
+                const content = cells[index].querySelector('.symbol-content');
+                if (content) {
+                    content.classList.remove('disappear-animation');
+                    content.textContent = '';
+                }
+            });
+        }
+
+        async function tumble() {
+            if(tumbleSound) tumbleSound.triggerAttackRelease("C2", "8n");
+            const cells = grid.children;
+
+            for (let col = 0; col < GRID_WIDTH; col++) {
+                let emptyRow = GRID_HEIGHT - 1;
+                for (let row = GRID_HEIGHT - 1; row >= 0; row--) {
+                    const index = row * GRID_WIDTH + col;
+                    if (gridSymbols[index] !== null) {
+                        const fallToIndex = emptyRow * GRID_WIDTH + col;
+                        if (index !== fallToIndex) {
+                            gridSymbols[fallToIndex] = gridSymbols[index];
+                            gridSymbols[index] = null;
+                            
+                            const symbolContent = cells[index].querySelector('.symbol-content');
+                            const fallingSymbol = symbolContent.textContent;
+                            symbolContent.textContent = '';
+                            
+                            const targetCellContent = cells[fallToIndex].querySelector('.symbol-content');
+                            targetCellContent.textContent = fallingSymbol;
+                            targetCellContent.style.animation = 'none';
+                            targetCellContent.offsetHeight;
+                            targetCellContent.style.animation = 'fall 0.3s ease-out forwards';
+                        }
+                        emptyRow--;
+                    }
+                }
+                
+                for (let row = emptyRow; row >= 0; row--) {
+                    const index = row * GRID_WIDTH + col;
+                    gridSymbols[index] = getRandomSymbol();
+                    const newContent = cells[index].querySelector('.symbol-content');
+                    newContent.textContent = gridSymbols[index];
+                    newContent.style.animation = 'none';
+                    newContent.offsetHeight;
+                    newContent.style.animation = `fall ${0.3 + (row * 0.05)}s ease-out forwards`;
+                }
+            }
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+
+        // --- START THE GAME ---
+        initializeGrid();
     });
     </script>
 </body>
